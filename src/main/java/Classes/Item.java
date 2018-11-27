@@ -1,9 +1,8 @@
-package edu.insightr.gildedrose.Classes;
+package Classes;
 
 import edu.insightr.gildedrose.Interface.IUpdate;
-import edu.insightr.gildedrose.Interface.IUpdateStrategy;
 
-public abstract class Item implements IUpdate, IUpdateStrategy {
+public abstract class Item implements IUpdate{
 
     protected String name;
     protected int sellIn;

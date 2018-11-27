@@ -1,4 +1,4 @@
-package edu.insightr.gildedrose.Classes;
+package Classes;
 
 public class Dexterity extends Item {
     public Dexterity(String name, int sellIn, int quality)

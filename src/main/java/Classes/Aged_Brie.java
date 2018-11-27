@@ -1,4 +1,4 @@
-package edu.insightr.gildedrose.Classes;
+package Classes;
 
 public class Aged_Brie extends Item {
     public Aged_Brie(String name, int sellIn, int quality)

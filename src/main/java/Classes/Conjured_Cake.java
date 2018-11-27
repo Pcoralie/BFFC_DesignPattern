@@ -1,4 +1,4 @@
-package edu.insightr.gildedrose.Classes;
+package Classes;
 
 public class Conjured_Cake extends Item{
     public Conjured_Cake(String name, int sellIn, int quality)
