@@ -1,8 +1,8 @@
 package Classes;
 
-import edu.insightr.gildedrose.Interface.IUpdate;
+import Interface.IUpdate;
 
-public abstract class Item implements IUpdate{
+public abstract class Item implements IUpdate {
 
     protected String name;
     protected int sellIn;

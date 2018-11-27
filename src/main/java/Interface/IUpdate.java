@@ -1,4 +1,4 @@
-package edu.insightr.gildedrose.Interface;
+package Interface;
 
 public interface IUpdate {
     void updateQuality();
