@@ -7,22 +7,22 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 
-public class StepdefsBackstage {
+public class StepdefsDexterity {
     private Inventory inventory;
     private Item[] items ;
     private Item vest;
-    private Item backstage;
+    private Item dexterity;
 
     @Given("^I have a new inventory$")
     public void iHaveANewInventory() throws Throwable {
         inventory = new Inventory();
         items = inventory.getItems();
-        backstage = items[4];
+        dexterity= items[0];
     }
 
-    @Then("^the quality of the backstage item is initialized as (\\d+)$")
-    public void theQualityOfTheBackstageIs( int backstageQuality) throws Throwable {
-        assertThat(backstage.getQuality(), is(backstageQuality));
+    @Then("^the quality of the dexterity item is initialized as (\\d+)$")
+    public void theQualityOfTheDexterityIs( int dexterityQuality) throws Throwable {
+        assertThat(dexterity.getQuality(), is(dexterityQuality));
     }
 
     @When("^I update the inventory$")
@@ -30,8 +30,8 @@ public class StepdefsBackstage {
         inventory.updateQuality();
     }
 
-    @Then("^the quality of the backstage item is (\\d+)$")
-    public void theQualityOfTheBackstageItemIs(int backstageQuality) throws Throwable {
-        assertThat(backstage.getQuality(), is(backstageQuality));
+    @Then("^the quality of the dexterity item is (\\d+)$")
+    public void theQualityOfTheDexterityItemIs(int dexterityQuality) throws Throwable {
+        assertThat(dexterity.getQuality(), is(dexterityQuality));
     }
 }

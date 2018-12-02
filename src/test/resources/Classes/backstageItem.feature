@@ -1,5 +1,5 @@
 Feature : Backstage Item
-# a conjured item quality decreases twice the normal rate
+# a backstage passes item quality ...
 
   Scenario : backstage item update
     Given I have a new inventory
