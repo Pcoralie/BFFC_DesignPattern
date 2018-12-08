@@ -9,6 +9,7 @@ public class Inventory {
         this.items = items;
     }
 
+    /*
     public Inventory() {
         super();
         items = new Item[]{
@@ -22,6 +23,7 @@ public class Inventory {
 
     }
 
+*/
 
 
     public void printInventory() {
@@ -33,6 +35,7 @@ public class Inventory {
         System.out.println("\n");
     }
 
+    /*
     public void updateQuality() {
         for (Item item : items) {
             Item category = categorize(item);
@@ -55,8 +58,9 @@ public class Inventory {
         }
         return new Item();
     }
+    */
 
-  /*
+
     public Inventory() {
         super();
         items = new Item[]{
@@ -68,26 +72,28 @@ public class Inventory {
                 new Conjured("Conjured Mana Cake", 3, 6)
         };
 
-     public void updateQuality() {
+    }
+
+     public void updateQuality(){
 
         for (int i = 0; i < items.length; i++) {
 
-            if(items[i] instanceof Aged_Brie)  items[i].update((Aged_Brie) items[i]);
+            if(items[i] instanceof Cheese)  items[i].updateQuality((Cheese) items[i]);
 
-            if(items[i] instanceof Backstage_passes)  items[i].update((Backstage_passes) items[i]);
+            if(items[i] instanceof BackstagePass)  items[i].updateQuality((BackstagePass) items[i]);
 
-            if(items[i] instanceof Conjured_Cake)  items[i].update((Conjured_Cake) items[i]);
+            if(items[i] instanceof Conjured)  items[i].updateQuality((Conjured) items[i]);
 
-            if(items[i] instanceof Dexterity)  items[i].update((Dexterity) items[i]);
+            if(items[i] instanceof Dexterity)  items[i].updateQuality((Dexterity) items[i]);
 
-            if(items[i] instanceof Elixir)  items[i].update((Elixir) items[i]);
+            if(items[i] instanceof Elixir)  items[i].updateQuality((Elixir) items[i]);
 
-            if(items[i] instanceof Sulfuras)  items[i].update((Sulfuras) items[i]);
+            if(items[i] instanceof Legendary)  items[i].updateQuality((Legendary) items[i]);
 
         }
 
     }
-    }*/
+
 
 
 

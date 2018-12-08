@@ -10,7 +10,6 @@ import static org.junit.Assert.assertThat;
 public class StepdefsCheese {
     private Inventory inventory;
     private Item[] items ;
-    private Item vest;
     private Item cheese;
 
 
