@@ -14,24 +14,24 @@ public class StepdefsConjured {
     private Item conjured;
 
     @Given("^I have a new inventory$")
-    public void iHaveANewInventory() throws Throwable {
+    public void iHaveANewInventory() {
         inventory = new Inventory();
         items = inventory.getItems();
         conjured = items[5];
     }
 
     @Then("^the quality of the conjured item is initialized as (\\d+)$")
-    public void theQualityOfTheConjuredIs( int conjuredQuality) throws Throwable {
+    public void theQualityOfTheConjuredIs( int conjuredQuality) {
         assertThat(conjured.getQuality(), is(conjuredQuality));
     }
 
     @When("^I update the inventory$")
-    public void iUpdateTheInventory() throws Throwable {
+    public void iUpdateTheInventory() {
         inventory.updateQuality();
     }
 
     @Then("^the quality of the conjured item is (\\d+)$")
-    public void theQualityOfTheConjuredItemIs(int conjuredQuality) throws Throwable {
+    public void theQualityOfTheConjuredItemIs(int conjuredQuality) {
         assertThat(conjured.getQuality(), is(conjuredQuality));
     }
 }

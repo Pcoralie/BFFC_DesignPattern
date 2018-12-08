@@ -1,12 +1,15 @@
 package Classes;
 
-public class Aged_Brie extends Item {
-    public Aged_Brie(String name, int sellIn, int quality)
+public class Cheese extends Item {
+    public Cheese(String name, int sellIn, int quality)
     {
         super();
         this.name = name;
         this.sellIn = sellIn;
         this.quality = quality;
+    }
+
+    public Cheese() {
     }
 
     public void updateQuality()
@@ -20,5 +23,13 @@ public class Aged_Brie extends Item {
                 this.setQuality(this.getQuality() + 1);
             }
         }
+    }
+
+    public void updateExpired(Item item){
+        incrementQuality(item);
+    }
+
+    public void updateQuality(Item item){
+        incrementQuality(item);
     }
 }

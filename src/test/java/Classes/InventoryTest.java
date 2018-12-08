@@ -21,7 +21,7 @@ public class InventoryTest {
     }
 
     @Test
-    public void testUpdateQualityWhenSellInFinished() throws Exception {
+    public void testUpdateQualityWhenSellInFinished() {
         inv.updateQuality();
         Item[] items = inv.getItems();
         for(int i=0 ; i<items.length; i++){

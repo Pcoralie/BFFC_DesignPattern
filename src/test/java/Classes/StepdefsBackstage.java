@@ -13,25 +13,25 @@ public class StepdefsBackstage {
     private Item vest;
     private Item backstage;
 
-    @Given("^I have a new inventory$")
-    public void iHaveANewInventory() throws Throwable {
+    @Given("^I have a new inventoryB$")
+    public void iHaveANewInventoryB() {
         inventory = new Inventory();
         items = inventory.getItems();
         backstage = items[4];
     }
 
     @Then("^the quality of the backstage item is initialized as (\\d+)$")
-    public void theQualityOfTheBackstageIs( int backstageQuality) throws Throwable {
+    public void theQualityOfTheBackstageIs( int backstageQuality) {
         assertThat(backstage.getQuality(), is(backstageQuality));
     }
 
-    @When("^I update the inventory$")
-    public void iUpdateTheInventory() throws Throwable {
+    @When("^I update the inventoryB$")
+    public void iUpdateTheInventoryB() {
         inventory.updateQuality();
     }
 
     @Then("^the quality of the backstage item is (\\d+)$")
-    public void theQualityOfTheBackstageItemIs(int backstageQuality) throws Throwable {
+    public void theQualityOfTheBackstageItemIs(int backstageQuality) {
         assertThat(backstage.getQuality(), is(backstageQuality));
     }
 }
