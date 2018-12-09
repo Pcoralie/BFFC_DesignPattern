@@ -1,7 +1,7 @@
 package edu.insightr.gildedrose.Classes;
 
-public class Dexterity extends Item {
-    public Dexterity(String name, int sellIn, int quality)
+public class Sulfuras extends Item {
+    public Sulfuras(String name, int sellIn, int quality)
     {
         super();
         this.name = name;
@@ -11,6 +11,8 @@ public class Dexterity extends Item {
 
     public void updateQuality()
     {
-
+        if (getQuality() < 50) {
+            setQuality(getQuality() + 1);
+        }
     }
 }

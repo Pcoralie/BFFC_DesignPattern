@@ -1,17 +1,5 @@
-package Interface;
-
-
-import Classes.Item;
+package edu.insightr.gildedrose.Interface;
 
 public interface IUpdate {
-    void updateQuality(Item item);
-
-    void incrementQuality( Item item);
-
-    void decrementQuality(Item item);
-
-    void updateSellIn(Item item);
-
-    void updateOneItem(Item item);
-
+    void updateQuality();
 }
