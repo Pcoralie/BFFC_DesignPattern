@@ -1,4 +1,4 @@
-package edu.insightr.gildedrose.Classes;
+package Classes;
 
 public class Sulfuras extends Item {
     public Sulfuras(String name, int sellIn, int quality)

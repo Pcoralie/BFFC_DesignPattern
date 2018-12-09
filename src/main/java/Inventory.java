@@ -1,6 +1,5 @@
-package edu.insightr.gildedrose;
 
-import edu.insightr.gildedrose.Classes.*;
+import Classes.*;
 
 public class Inventory {
 

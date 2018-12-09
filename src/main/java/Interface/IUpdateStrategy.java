@@ -1,6 +1,6 @@
-package edu.insightr.gildedrose.Interface;
+package Interface;
 
-import edu.insightr.gildedrose.Classes.*;
+import Classes.*;
 
 public interface IUpdateStrategy {
     void update(Aged_Brie aged_brie);
