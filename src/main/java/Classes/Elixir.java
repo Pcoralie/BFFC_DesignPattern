@@ -1,4 +1,4 @@
-package Classes;
+package edu.insightr.gildedrose.Classes;
 
 public class Elixir extends Item {
 
