@@ -1,21 +1,24 @@
-package edu.insightr.gildedrose.Classes;
+package Classes;
 
-import edu.insightr.gildedrose.Interface.IUpdate;
-import edu.insightr.gildedrose.Interface.IUpdateStrategy;
+import Interface.IUpdate;
 
-public abstract class Item implements IUpdate, IUpdateStrategy {
+public class Item implements IUpdate {
 
     protected String name;
     protected int sellIn;
 
     protected int quality;
 
-    /*public Item(String name, int sellIn, int quality) {
+    public Item(String name, int sellIn, int quality) {
         super();
         this.name = name;
         this.sellIn = sellIn;
         this.quality = quality;
-    }*/
+    }
+    
+    public Item() {
+    }
+
 
     public String getName() {
         return name;
@@ -98,6 +101,42 @@ public abstract class Item implements IUpdate, IUpdateStrategy {
         }
     }
 
+    public void incrementQuality( Item item){
+        if (item.quality <50){
+            item.quality = item.quality + 1;
+        }
+    }
+
+    public void decrementQuality(Item item){
+        if (item.quality > 0){
+            item.quality = item.quality - 1;
+        }
+    }
+
+    public void updateExpired(Item item){
+        decrementQuality(item);
+    }
+
+    public void updateSellIn(Item item){
+        item.sellIn = item.sellIn - 1;
+    }
+
+    public void updateQuality(Item item){
+        decrementQuality(item);
+    }
+
+    public void updateOneItem(Item item){
+        updateQuality(item);
+
+        updateSellIn(item);
+
+        if(item.sellIn < 0){
+            updateExpired(item);
+        }
+    }
+
+    
+    
     @Override
     public String toString() {
         return "Item{" +
