@@ -11,20 +11,36 @@ public class Backstage_passes extends Item {
 
     public void updateQuality()
     {
-        if (getQuality() < 50) {
-            setQuality(getQuality() + 1);
-
-            if (getSellIn() < 11) {
-                if (getQuality() < 50) {
-                    setQuality(getQuality() + 1);
+        if(this.getSellIn() <0)
+        {
+            this.setQuality(0);
+        }
+        else
+        {
+            if(this.getQuality() < 50)
+            {
+                if(this.getSellIn() <= 10)
+                {
+                    if(this.getSellIn() <= 5)
+                    {
+                        this.setQuality(this.getQuality() + 3);
+                    }
+                    else
+                    {
+                        this.setQuality(this.getQuality() + 2);
+                    }
                 }
-            }
-
-            if (getSellIn() < 6) {
-                if (getQuality() < 50) {
-                    setQuality(getQuality() + 1);
+                else
+                {
+                    this.setQuality(this.getQuality() + 1);
                 }
             }
         }
+
+        if(this.getQuality() > 50)
+        {
+            this.setQuality(50);
+        }
+
     }
 }

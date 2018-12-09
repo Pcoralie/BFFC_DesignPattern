@@ -11,9 +11,20 @@ public class Conjured_Cake extends Item{
 
     public void updateQuality()
     {
-        if(getQuality() < 50)
+        if(this.getQuality() >0 )
         {
-            setQuality(getQuality() - 2);
+            if (this.getSellIn() < 0) {
+                this.setQuality(this.getQuality() - 4);
+            }
+            else {
+                this.setQuality((this.getQuality() - 2));
+            }
         }
+
+        if(this.getQuality()<0)
+        {
+            this.setQuality(0);
+        }
+
     }
 }

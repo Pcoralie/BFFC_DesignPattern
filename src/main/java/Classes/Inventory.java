@@ -17,7 +17,13 @@ public class Inventory {
                 new Elixir("Elixir of the Mongoose", 5, 7),
                 new Sulfuras("Sulfuras, Hand of Ragnaros", 0, 80),
                 new Backstage_passes("Backstage passes to a TAFKAL80ETC concert", 15, 20),
-                new Conjured_Cake("Conjured Mana Cake", 3, 6)
+                new Conjured_Cake("Conjured Mana Cake", 3, 6),
+                new Aged_Brie("Aged Brie", -2, 3),
+                new Conjured_Cake("Conjured Mana Cake", -2, 6),
+                new Dexterity("+5 Dexterity Vest", -2, 20),
+                new Elixir("Elixir of the Mongoose", -2, 7),
+                new Backstage_passes("Backstage passes to a TAFKAL80ETC concert", 8, 45),
+                new Backstage_passes("Backstage passes to a TAFKAL80ETC concert", 3, 20)
         };
     }
 
@@ -36,6 +42,18 @@ public class Inventory {
         }
     }
 
+    public void updateSellin()
+    {
+        for (int i = 0; i < items.length; i++) {
+            items[i].sellIn--;
+        }
+    }
+
+    public void updateAll()
+    {
+        this.updateSellin();
+        this.updateQuality();
+    }
 
 
     public static void main(String[] args) {

@@ -40,7 +40,7 @@ public abstract class Item implements IUpdate {
         this.quality = quality;
     }
 
-    public void update(Aged_Brie aged_brie)
+    /*public void update(Aged_Brie aged_brie)
     {
         if (this.getQuality() < 50) {
             this.setQuality(this.getQuality() + 1);
@@ -95,7 +95,7 @@ public abstract class Item implements IUpdate {
         if (getQuality() < 50) {
             setQuality(getQuality() + 1);
         }
-    }
+    }*/
 
     @Override
     public String toString() {

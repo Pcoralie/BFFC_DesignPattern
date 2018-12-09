@@ -11,8 +11,6 @@ public class Sulfuras extends Item {
 
     public void updateQuality()
     {
-        if (getQuality() < 50) {
-            setQuality(getQuality() + 1);
-        }
+        //We don't need to do anything since Sulfuras is a legendary item.
     }
 }
