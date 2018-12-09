@@ -1,21 +1,25 @@
-package edu.insightr.gildedrose.Classes;
+package Classes;
 
-import edu.insightr.gildedrose.Interface.IUpdate;
-import edu.insightr.gildedrose.Interface.IUpdateStrategy;
+import Interface.IUpdate;
 
-public abstract class Item implements IUpdate, IUpdateStrategy {
+public  class Item implements IUpdate{
 
     protected String name;
     protected int sellIn;
 
     protected int quality;
 
-    /*public Item(String name, int sellIn, int quality) {
+    public Item(String name, int sellIn, int quality) {
         super();
         this.name = name;
         this.sellIn = sellIn;
         this.quality = quality;
-    }*/
+    }
+
+    public Item() {
+    }
+
+
 
     public String getName() {
         return name;
@@ -41,62 +45,41 @@ public abstract class Item implements IUpdate, IUpdateStrategy {
         this.quality = quality;
     }
 
-    public void update(Aged_Brie aged_brie)
-    {
-        if (this.getQuality() < 50) {
-            this.setQuality(this.getQuality() + 1);
-        }
 
-        if (this.getSellIn() < 0) {
-            if (this.getQuality() < 50) {
-                this.setQuality(this.getQuality() + 1);
-            }
+    public void incrementQuality( Item item){
+        if (item.quality <50){
+            item.quality = item.quality + 1;
         }
     }
 
-    public void update(Backstage_passes backstage_passes)
-    {
-        if (getQuality() < 50) {
-            setQuality(getQuality() + 1);
-
-            if (getSellIn() < 11) {
-                if (getQuality() < 50) {
-                    setQuality(getQuality() + 1);
-                }
-            }
-
-            if (getSellIn() < 6) {
-                if (getQuality() < 50) {
-                    setQuality(getQuality() + 1);
-                }
-            }
+    public void decrementQuality(Item item){
+        if (item.quality > 0){
+            item.quality = item.quality - 1;
         }
     }
 
-    public void update(Conjured_Cake conjured_cake)
-    {
-        if(getQuality() < 50)
-        {
-            setQuality(getQuality() - 2);
+    public void updateExpired(Item item){
+        decrementQuality(item);
+    }
+
+    public void updateSellIn(Item item){
+        item.sellIn = item.sellIn - 1;
+    }
+
+    public void updateQuality(Item item){
+        decrementQuality(item);
+    }
+
+    public void updateOneItem(Item item){
+        updateQuality(item);
+
+        updateSellIn(item);
+
+        if(item.sellIn < 0){
+            updateExpired(item);
         }
     }
 
-    public void update(Dexterity dexterity)
-    {
-
-    }
-
-    public void update(Elixir elixir)
-    {
-
-    }
-
-    public void update(Sulfuras sulfuras)
-    {
-        if (getQuality() < 50) {
-            setQuality(getQuality() + 1);
-        }
-    }
 
     @Override
     public String toString() {
