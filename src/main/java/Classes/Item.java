@@ -80,6 +80,62 @@ public  class Item implements IUpdate{
         }
     }
 
+    /*
+     public void update(Aged_Brie aged_brie)
+    {
+        if (this.getQuality() < 50) {
+            this.setQuality(this.getQuality() + 1);
+        }
+        if (this.getSellIn() < 0) {
+            if (this.getQuality() < 50) {
+                this.setQuality(this.getQuality() + 1);
+            }
+        }
+    }
+    public void update(Backstage_passes backstage_passes)
+    {
+        if (getQuality() < 50) {
+            setQuality(getQuality() + 1);
+            if (getSellIn() < 11) {
+                if (getQuality() < 50) {
+                    setQuality(getQuality() + 1);
+                }
+            }
+            if (getSellIn() < 6) {
+                if (getQuality() < 50) {
+                    setQuality(getQuality() + 1);
+                }
+            }
+        }
+    }
+
+    public void update(Conjured_Cake conjured_cake)
+    {
+        if(getQuality() < 50)
+        {
+            setQuality(getQuality() - 2);
+        }
+    }
+
+    public void update(Dexterity dexterity)
+    {
+
+    }
+
+    public void update(Elixir elixir)
+    {
+
+    }
+
+    public void update(Sulfuras sulfuras)
+    {
+        if (getQuality() < 50) {
+            setQuality(getQuality() + 1);
+        }
+       }
+     */
+
+
 
     @Override
     public String toString() {
