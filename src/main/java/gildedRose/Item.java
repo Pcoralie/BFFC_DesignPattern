@@ -138,8 +138,10 @@ public class Item implements IUpdate {
     
     @Override
     public String toString() {
-        return name + '\'' +
-                ", SellIn : " + sellIn +
-                ", Quality : " + quality;
+        return "Item{" +
+                "name='" + name + '\'' +
+                ", sellIn=" + sellIn +
+                ", quality=" + quality +
+                '}';
     }
 }
