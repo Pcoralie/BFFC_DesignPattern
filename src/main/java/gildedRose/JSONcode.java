@@ -5,9 +5,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.StringWriter;
+import java.io.*;
 import java.util.Iterator;
 import java.util.List;
 
@@ -33,7 +31,12 @@ public class JSONcode {
 
         JSONParser parser = new JSONParser();
         try{
-            Object obj = parser.parse(new FileReader("inventory.json"));
+            InputStream is = JSONcode.class.getResourceAsStream("/main/resources/inventory.json");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            System.out.println(reader);
+            Object obj = parser.parse(new BufferedReader(new InputStreamReader(is)));
+
+            //Object obj = parser.parse(new FileReader("/main/resources/inventory.json"));
             JSONObject jsonObject =(JSONObject) obj;
             String name = (String) jsonObject.get("Name");
             Integer sellIn = (Integer) jsonObject.get("SellIn");
@@ -48,6 +51,7 @@ public class JSONcode {
                 System.out.println(iterator.next());
             }
         }catch(Exception e){
+            System.out.println("json file is empty");
             e.printStackTrace();
         }
     }
