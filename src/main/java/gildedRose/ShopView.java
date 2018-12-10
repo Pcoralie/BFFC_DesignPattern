@@ -13,13 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
@@ -27,7 +21,7 @@ import javafx.stage.FileChooser;
 public class ShopView implements Initializable {
 
     @FXML
-    ListView<String> shopListView;
+    ListView<String> listViewShop;
 
     @FXML
     Label labelShopItems;
@@ -35,20 +29,33 @@ public class ShopView implements Initializable {
     @FXML
     Button buttonUpdate;
 
+    Inventory inventory = new Inventory();
+    Item[] items = inventory.getItems();
+
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-
         fetchItems();
     }
 
     public void fetchItems()
     {
-        Inventory inv = new Inventory();
-        ObservableList<String> items;
-        items = FXCollections.observableArrayList(inv.getItems().toString());
-        shopListView.setItems(items);
+        ObservableList<String> allItems;
+        ArrayList<String> itemsToFetch = new ArrayList<String>();
 
+        for(int i = 0; i<items.length; i++)
+        {
+            itemsToFetch.add(items[i].toString());
+        }
+        allItems = FXCollections.observableArrayList(itemsToFetch);
+        listViewShop.setItems(allItems);
+
+    }
+
+    public void OnUpdate()
+    {
+        inventory.updateQuality();
+        fetchItems();
     }
 
     
