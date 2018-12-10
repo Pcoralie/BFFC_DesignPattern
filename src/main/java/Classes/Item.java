@@ -44,6 +44,7 @@ public class Item implements IUpdate {
         this.quality = quality;
     }
 
+    /*
     public void update(Cheese aged_brie)
     {
         if (this.getQuality() < 50) {
@@ -99,7 +100,7 @@ public class Item implements IUpdate {
         if (getQuality() < 50) {
             setQuality(getQuality() + 1);
         }
-    }
+    }*/
 
     public void incrementQuality( Item item){
         if (item.quality <50){
