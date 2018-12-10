@@ -1,7 +1,5 @@
 package gildedRose;
 
-import gildedRose.*;
-
 public interface IUpdateStrategy {
     void update(Cheese aged_brie);
 
