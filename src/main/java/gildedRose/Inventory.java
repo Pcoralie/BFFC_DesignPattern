@@ -1,6 +1,8 @@
 
 package gildedRose;
 
+import java.util.ArrayList;
+
 public class Inventory {
 
     private Item[] items;
@@ -129,11 +131,6 @@ public class Inventory {
     }
 
 
-
-
-
-
-
     public static void main(String[] args) {
         Inventory inventory = new Inventory();
         for (int i = 0; i < 10; i++) {
@@ -144,5 +141,9 @@ public class Inventory {
 
     public Item[] getItems() {
         return items;
+    }
+
+    public void setItems(Item[] items) {
+        this.items = items;
     }
 }

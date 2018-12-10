@@ -22,19 +22,24 @@ public class ShopView implements Initializable {
 
     @FXML
     ListView<String> listViewShop;
-
     @FXML
     Label labelShopItems;
-
     @FXML
     Button buttonUpdate;
+    @FXML
+    Label labelDate;
+
 
     Inventory inventory = new Inventory();
     Item[] items = inventory.getItems();
 
+    int date = 0;
+
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
+        labelDate.setText("Jour : " + Integer.toString(date));
+
         fetchItems();
     }
 
@@ -55,8 +60,12 @@ public class ShopView implements Initializable {
     public void OnUpdate()
     {
         inventory.updateQuality();
+        date = date + 1;
+        labelDate.setText("Jour : " + Integer.toString(date));
         fetchItems();
     }
+
+
 
     
 }
