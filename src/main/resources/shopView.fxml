@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane prefHeight="612.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gildedRose.ShopView">
+   <children>
+      <Pane id="generalPane" fx:id="generalPane" layoutY="-7.0" prefHeight="600.0" prefWidth="600.0">
+         <children>
+            <Button fx:id="buttonUpdate" layoutX="125.0" layoutY="515.0" mnemonicParsing="false" onAction="#OnUpdate" prefHeight="65.0" prefWidth="343.0" text="Update Shop" />
+            <Label fx:id="labelShopItems" layoutX="195.0" layoutY="30.0" prefHeight="18.0" prefWidth="210.0" text="The shop contains those items : " />
+            <ListView fx:id="listViewShop" layoutX="31.0" layoutY="102.0" prefHeight="390.0" prefWidth="540.0" />
+             
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
