@@ -1,3 +1,4 @@
+
 package Classes;
 
 public class Inventory {
@@ -82,7 +83,14 @@ public class Inventory {
                 new Elixir("Elixir of the Mongoose", 5, 7),
                 new Legendary("Legendary, Hand of Ragnaros", 0, 80),
                 new BackstagePass("Backstage passes to a TAFKAL80ETC concert", 15, 20),
-                new Conjured("Conjured Mana Cake", 3, 6)
+                new Conjured("Conjured Mana Cake", 3, 6),
+                new Dexterity("+6 Dexterity Pants", -2, 20),
+                new Cheese("Aged Camembert", -2, 5),
+                new Elixir("Elixir of the Elders", -2, 7),
+                new BackstagePass("Backstage passes to a TAFKAL80ETC concert 2", 8, 20),
+                new BackstagePass("Backstage passes to a TAFKAL80ETC concert 3", 3, 20),
+                new Conjured("Conjured Health Cake", -2, 6)
+
         };
 
     }
@@ -104,17 +112,17 @@ public class Inventory {
 
         for (int i = 0; i < items.length; i++) {
 
-            if(items[i] instanceof Cheese)  items[i].updateQuality((Cheese) items[i]);
+            if(items[i] instanceof Cheese)  items[i].updateOneItem((Cheese) items[i]);
 
-            if(items[i] instanceof BackstagePass)  items[i].updateQuality((BackstagePass) items[i]);
+            if(items[i] instanceof BackstagePass)  items[i].updateOneItem((BackstagePass) items[i]);
 
-            if(items[i] instanceof Conjured)  items[i].updateQuality((Conjured) items[i]);
+            if(items[i] instanceof Conjured)  items[i].updateOneItem((Conjured) items[i]);
 
-            if(items[i] instanceof Dexterity)  items[i].updateQuality((Dexterity) items[i]);
+            if(items[i] instanceof Dexterity)  items[i].updateOneItem((Dexterity) items[i]);
 
-            if(items[i] instanceof Elixir)  items[i].updateQuality((Elixir) items[i]);
+            if(items[i] instanceof Elixir)  items[i].updateOneItem((Elixir) items[i]);
 
-            if(items[i] instanceof Legendary)  items[i].updateQuality((Legendary) items[i]);
+            if(items[i] instanceof Legendary)  items[i].updateOneItem((Legendary) items[i]);
 
         }
 
