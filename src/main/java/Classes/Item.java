@@ -44,7 +44,7 @@ public class Item implements IUpdate {
         this.quality = quality;
     }
 
-    public void update(Aged_Brie aged_brie)
+    public void update(Cheese aged_brie)
     {
         if (this.getQuality() < 50) {
             this.setQuality(this.getQuality() + 1);
@@ -57,7 +57,7 @@ public class Item implements IUpdate {
         }
     }
 
-    public void update(Backstage_passes backstage_passes)
+    public void update(BackstagePass backstage_passes)
     {
         if (getQuality() < 50) {
             setQuality(getQuality() + 1);
@@ -76,7 +76,7 @@ public class Item implements IUpdate {
         }
     }
 
-    public void update(Conjured_Cake conjured_cake)
+    public void update(Conjured conjured_cake)
     {
         if(getQuality() < 50)
         {
@@ -94,7 +94,7 @@ public class Item implements IUpdate {
 
     }
 
-    public void update(Sulfuras sulfuras)
+    public void update(Legendary sulfuras)
     {
         if (getQuality() < 50) {
             setQuality(getQuality() + 1);
