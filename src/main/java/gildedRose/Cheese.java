@@ -14,14 +14,22 @@ public class Cheese extends Item {
 
     public void updateQuality()
     {
-        if (this.getQuality() < 50) {
-            this.setQuality(this.getQuality() + 1);
-        }
-
-        if (this.getSellIn() < 0) {
-            if (this.getQuality() < 50) {
+        //Quality of Aged Brie increases with time
+        //However it must never be over 50
+        if(this.getQuality()<50)
+        {
+            if (this.getSellIn() < 0) {
+                this.setQuality(this.getQuality() + 2);
+            }
+            else
+            {
                 this.setQuality(this.getQuality() + 1);
             }
+        }
+
+        if(this.getQuality() > 50)
+        {
+            this.setQuality(50);
         }
     }
 
