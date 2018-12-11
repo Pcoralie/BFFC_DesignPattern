@@ -1,11 +1,16 @@
 package gildedRose;
 
+import java.util.Date;
+
 public class Item implements IUpdate {
 
     protected String name;
     protected int sellIn;
 
     protected int quality;
+
+
+
 
     public Item(String name, int sellIn, int quality) {
         super();
@@ -41,6 +46,8 @@ public class Item implements IUpdate {
     public void setQuality(int quality) {
         this.quality = quality;
     }
+
+
 
     /*
     public void update(Cheese aged_brie)
