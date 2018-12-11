@@ -12,6 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -33,6 +34,8 @@ public class ShopView implements Initializable {
     Label labelDate;
     @FXML
     Button buttonLoadFile;
+    @FXML
+    PieChart pieChart;
 
 
     Inventory globalInventory = new Inventory(new Item[0]);
@@ -46,7 +49,10 @@ public class ShopView implements Initializable {
     {
         labelDate.setText("Jour : " + Integer.toString(date));
 
-        //fetchItems();
+
+        fetchItems();
+        fetchPiechart();
+
     }
 
     public void fetchItems()
@@ -65,12 +71,43 @@ public class ShopView implements Initializable {
 
     }
 
+    public  void fetchPiechart()
+    {
+        int cheese = 0;
+        int backstagepass = 0;
+        int conjured = 0;
+        int dexterity = 0;
+        int elixir = 0;
+        int legendary = 0;
+        for (int i = 0; i < items.length; i++)
+        {
+            if(items[i] instanceof Cheese) cheese++;
+            if(items[i] instanceof BackstagePass) backstagepass++;
+            if(items[i] instanceof Conjured) conjured++;
+            if(items[i] instanceof Dexterity) dexterity++;
+            if(items[i] instanceof Elixir) elixir++;
+            if(items[i] instanceof Legendary) legendary++;
+        }
+        ObservableList<PieChart.Data> pieChartData =
+                FXCollections.observableArrayList(
+                        new PieChart.Data("Cheese", cheese),
+                        new PieChart.Data("BackstagePass", backstagepass),
+                        new PieChart.Data("Conjured", conjured),
+                        new PieChart.Data("Dexterity", dexterity),
+                        new PieChart.Data("Elixir", elixir),
+                        new PieChart.Data("Legendary", legendary)
+                );
+
+        pieChart.setData(pieChartData);
+    }
+
     public void OnUpdate()
     {
         globalInventory.updateQuality();
         date = date + 1;
         labelDate.setText("Jour : " + Integer.toString(date));
         fetchItems();
+        fetchPiechart();
     }
 
     public void OnLoadFile(){
