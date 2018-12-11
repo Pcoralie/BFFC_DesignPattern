@@ -38,8 +38,9 @@ public class ShopView implements Initializable {
     PieChart pieChart;
 
 
-    Inventory inventory = new Inventory();
-    Item[] items = inventory.getItems();
+    Inventory globalInventory = new Inventory(new Item[0]);
+
+
 
     int date = 0;
 
@@ -48,8 +49,10 @@ public class ShopView implements Initializable {
     {
         labelDate.setText("Jour : " + Integer.toString(date));
 
+
         fetchItems();
         fetchPiechart();
+
     }
 
     public void fetchItems()
@@ -57,9 +60,11 @@ public class ShopView implements Initializable {
         ObservableList<String> allItems;
         ArrayList<String> itemsToFetch = new ArrayList<String>();
 
-        for(int i = 0; i<items.length; i++)
+
+
+        for(int i = 0; i<globalInventory.getItems().length; i++)
         {
-            itemsToFetch.add(items[i].toString());
+            itemsToFetch.add(globalInventory.getItems()[i].toString());
         }
         allItems = FXCollections.observableArrayList(itemsToFetch);
         listViewShop.setItems(allItems);
@@ -98,7 +103,7 @@ public class ShopView implements Initializable {
 
     public void OnUpdate()
     {
-        inventory.updateQuality();
+        globalInventory.updateQuality();
         date = date + 1;
         labelDate.setText("Jour : " + Integer.toString(date));
         fetchItems();
@@ -107,15 +112,59 @@ public class ShopView implements Initializable {
 
     public void OnLoadFile(){
         JSONParser parser = new JSONParser();
-        try{ Object obj = parser.parse(new FileReader("inventory.json"));
-            JSONObject jsonObject =(JSONObject) obj;
+        try{ JSONArray a = (JSONArray) parser.parse(new FileReader("inventory.json"));
+            /*JSONObject jsonObject =(JSONObject) obj;
             JSONArray inventory =(JSONArray) jsonObject.get("inventory");
             System.out.println("\nInventory:");
-            Iterator<Item> iterator = inventory.iterator();
-            while(iterator.hasNext()) {
-                System.out.println("Item  " + iterator.next());
+            Iterator<Item> iterator = inventory.iterator();*/
+
+            for(Object o : a)
+            {
+
+               JSONObject item = (JSONObject) o;
+               String name = (String) item.get("name");
+               Integer sellin = (int) (long)item.get("sellIn");
+               Integer quality = (int) (long)item.get("quality");
+
+               if(name.toLowerCase().contains("elixir"))
+               {
+                   Elixir newElixir = new Elixir(name, sellin, quality);
+                   globalInventory.addItem(newElixir);
+               }
+               if(name.toLowerCase().contains("dexterity"))
+               {
+                   Dexterity newDexterity = new Dexterity(name, sellin, quality);
+                   globalInventory.addItem(newDexterity);
+               }
+               if(name.toLowerCase().contains("aged"))
+               {
+                   Cheese newCheese = new Cheese(name, sellin, quality);
+                   globalInventory.addItem(newCheese);
+               }
+               if(name.toLowerCase().contains("conjured"))
+               {
+                   Conjured newConjured = new Conjured(name, sellin, quality);
+                   globalInventory.addItem(newConjured);
+               }
+               if(name.toLowerCase().contains("backstage"))
+               {
+                   BackstagePass newBackstage = new BackstagePass(name, sellin, quality);
+                   globalInventory.addItem(newBackstage);
+               }
+               if(name.toLowerCase().contains("sulfuras"))
+               {
+                   Legendary newLegendary = new Legendary(name, sellin, quality);
+                   globalInventory.addItem(newLegendary);
+               }
+
+
             }
-        }catch(FileNotFoundException e){
+
+            fetchItems();
+
+
+
+            }catch(FileNotFoundException e){
             System.out.println("json file isn't found");
             e.printStackTrace();
         }catch(IOException e ){

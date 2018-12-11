@@ -131,7 +131,18 @@ public class Inventory {
     }
 
 
-
+    public void addItem(Item item)
+    {
+        Item [] newItemArray = new Item[this.items.length+1];
+        int i =0;
+        while(i<items.length)
+        {
+            newItemArray[i] = this.items[i];
+            i++;
+        }
+        newItemArray[i] = item;
+        this.setItems(newItemArray);
+    }
 
 
 
