@@ -48,10 +48,10 @@ public class ShopView implements Initializable {
     public void initialize(URL location, ResourceBundle resources)
     {
         labelDate.setText("Jour : " + Integer.toString(date));
-
+        pieChart.setVisible(false);
 
         //fetchItems();
-        fetchPiechart();
+        //fetchPiechart();
 
     }
 
@@ -73,6 +73,7 @@ public class ShopView implements Initializable {
 
     public  void fetchPiechart()
     {
+        Item [] items = globalInventory.getItems();
         int cheese = 0;
         int backstagepass = 0;
         int conjured = 0;
@@ -108,6 +109,7 @@ public class ShopView implements Initializable {
         labelDate.setText("Jour : " + Integer.toString(date));
         fetchItems();
         fetchPiechart();
+        pieChart.setVisible(true);
     }
 
     public void OnLoadFile(){
@@ -159,8 +161,10 @@ public class ShopView implements Initializable {
 
 
             }
-
+            fetchPiechart();
+            pieChart.setVisible(true);
             fetchItems();
+
 
 
 
