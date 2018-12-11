@@ -102,6 +102,7 @@ public class ShopView implements Initializable {
         date = date + 1;
         labelDate.setText("Jour : " + Integer.toString(date));
         fetchItems();
+        fetchPiechart();
     }
 
     public void OnLoadFile(){
