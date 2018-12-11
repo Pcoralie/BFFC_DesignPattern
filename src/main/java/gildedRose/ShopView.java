@@ -50,7 +50,7 @@ public class ShopView implements Initializable {
         labelDate.setText("Jour : " + Integer.toString(date));
 
 
-        fetchItems();
+        //fetchItems();
         fetchPiechart();
 
     }
