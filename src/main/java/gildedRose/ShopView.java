@@ -114,13 +114,13 @@ public class ShopView implements Initializable {
 
     public void OnLoadFile(){
         JSONParser parser = new JSONParser();
-        try{ JSONArray a = (JSONArray) parser.parse(new FileReader("inventory.json"));
+        try{ JSONArray inventory = (JSONArray) parser.parse(new FileReader("inventory.json"));
             /*JSONObject jsonObject =(JSONObject) obj;
             JSONArray inventory =(JSONArray) jsonObject.get("inventory");
             System.out.println("\nInventory:");
             Iterator<Item> iterator = inventory.iterator();*/
 
-            for(Object o : a)
+            for(Object o : inventory)
             {
 
                JSONObject item = (JSONObject) o;
