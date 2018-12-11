@@ -1,7 +1,6 @@
 package gildedRose;
 
 
-import gildedRose.Item;
 
 public interface IUpdate {
     void updateQuality(Item item);
