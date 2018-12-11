@@ -82,7 +82,7 @@ public class Inventory {
                 new Dexterity("+5 Dexterity Vest", 10, 20),
                 new Cheese("Aged Brie", 2, 0),
                 new Elixir("Elixir of the Mongoose", 5, 7),
-                new Legendary("Legendary, Hand of Ragnaros", 0, 80),
+                new Legendary("Sulfuras, Hand of Ragnaros", 0, 80),
                 new BackstagePass("Backstage passes to a TAFKAL80ETC concert", 15, 20),
                 new Conjured("Conjured Mana Cake", 3, 6),
                 new Dexterity("+6 Dexterity Pants", -2, 20),
@@ -128,6 +128,11 @@ public class Inventory {
         }
 
     }
+
+
+
+
+
 
 
     public static void main(String[] args) {
