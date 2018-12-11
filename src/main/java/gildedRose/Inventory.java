@@ -1,6 +1,7 @@
 
 package gildedRose;
 
+
 public class Inventory {
 
     private Item[] items;
@@ -145,4 +146,5 @@ public class Inventory {
     public Item[] getItems() {
         return items;
     }
+
 }
