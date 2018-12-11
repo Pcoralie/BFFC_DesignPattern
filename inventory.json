@@ -1,6 +1,5 @@
 {
-  "inventory": {
-    "items": [
+  "inventory": [
       {"name": "+5 Dexterity Vest", "sellIn":10, "quality":20},
       {"name": "Aged Brie", "sellIn": 2, "quality": 0},
       {"name": "Elixir of the Mongoose", "sellIn": 5,  "quality": 7},
@@ -8,6 +7,6 @@
       {"name": "Backstage passes to a TAFKAL80ETC concert", "sellIn": 15, "quality": 20}
 
     ]
-  }
 }
+
 
