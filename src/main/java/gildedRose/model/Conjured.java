@@ -1,9 +1,9 @@
-package gildedRose;
+package gildedRose.model;
 
 import java.util.Calendar;
 
-public class Legendary extends Item {
-    public Legendary(String name, int sellIn, int quality, Calendar calendar)
+public class Conjured extends Item {
+    public Conjured(String name, int sellIn, int quality, Calendar calendar)
     {
         super();
         this.name = name;
@@ -12,7 +12,7 @@ public class Legendary extends Item {
         this.creationDate = calendar;
     }
 
-    public Legendary(String name, int sellIn, int quality)
+    public Conjured(String name, int sellIn, int quality)
     {
         super();
         this.name = name;
@@ -20,23 +20,24 @@ public class Legendary extends Item {
         this.quality = quality;
     }
 
-    public Legendary() {
+    public Conjured() {
     }
 
     public void updateQuality()
     {
-        if (getQuality() < 50) {
-            setQuality(getQuality() + 1);
+        if(getQuality() < 50)
+        {
+            setQuality(getQuality() - 2);
         }
     }
 
     public void updateExpired(Item item){
-    }
-
-    public void updateSellIn(Item item){
-
+        decrementQuality(item);
+        decrementQuality(item);
     }
 
     public void updateQuality(Item item){
+        decrementQuality(item);
+        decrementQuality(item);
     }
 }

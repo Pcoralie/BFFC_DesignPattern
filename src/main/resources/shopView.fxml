@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="969.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gildedRose.ShopView">
+<AnchorPane prefHeight="600.0" prefWidth="969.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gildedRose.controller.ShopView">
    <children>
       <Pane id="generalPane" fx:id="generalPane" layoutX="-7.0" prefHeight="600.0" prefWidth="863.0">
          <children>

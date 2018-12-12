@@ -1,9 +1,7 @@
-package gildedRose;
+package gildedRose.model;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.time.DayOfWeek;
 
 public class Item implements IUpdate {
 

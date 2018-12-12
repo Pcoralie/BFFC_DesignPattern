@@ -1,10 +1,9 @@
-package gildedRose;
+package gildedRose.model;
 
 import java.util.Calendar;
 
-public class Elixir extends Item {
-
-    public Elixir(String name, int sellIn, int quality, Calendar calendar)
+public class Dexterity extends Item {
+    public Dexterity(String name, int sellIn, int quality, Calendar calendar)
     {
         super();
         this.name = name;
@@ -13,7 +12,7 @@ public class Elixir extends Item {
         this.creationDate = calendar;
     }
 
-    public Elixir(String name, int sellIn, int quality)
+    public Dexterity(String name, int sellIn, int quality)
     {
         super();
         this.name = name;

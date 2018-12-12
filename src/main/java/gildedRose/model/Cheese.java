@@ -1,4 +1,4 @@
-package gildedRose;
+package gildedRose.model;
 
 import java.util.Calendar;
 

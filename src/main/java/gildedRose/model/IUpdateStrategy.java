@@ -1,4 +1,4 @@
-package gildedRose;
+package gildedRose.model;
 
 public interface IUpdateStrategy {
     void update(Cheese aged_brie);
