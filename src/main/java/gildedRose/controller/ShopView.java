@@ -24,7 +24,8 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.chart.PieChart;
+import javafx.scene.Scene;
+import javafx.scene.chart.*;
 import javafx.scene.control.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -48,6 +49,13 @@ public class ShopView implements Initializable {
     @FXML
     PieChart pieChart;
 
+    @FXML
+    BarChart<String, Number> bc;
+    @FXML
+    CategoryAxis xAxis;
+    @FXML
+    NumberAxis yAxis;
+
 
     Inventory globalInventory = new Inventory(new Item[0]);
 
@@ -59,6 +67,7 @@ public class ShopView implements Initializable {
     {
         labelDate.setText("Jour : " + Integer.toString(date));
         pieChart.setVisible(false);
+        bc.setVisible(false);
 
         //fetchItems();
         //fetchPiechart();
@@ -112,6 +121,53 @@ public class ShopView implements Initializable {
         pieChart.setData(pieChartData);
     }
 
+    public void FetchBarChartCreationDate(){
+        Item [] items = globalInventory.getItems();
+        bc.autosize();
+
+
+        //CategoryAxis xAxis = new CategoryAxis();
+        //NumberAxis yAxis = new NumberAxis();
+        //BarChart<String, Number> bc = new BarChart<String, Number>(xAxis, yAxis);
+        //bc = new BarChart<String, Number>(xAxis, yAxis);
+        //bc.setTitle("Number of Items by creation date");
+        //xAxis.setLabel("creation date");
+        //yAxis.setLabel("number of items");
+        ArrayList<String> dates = new ArrayList();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        for (Item i : items ) {
+            String creationDate = sdf.format(i.getCreationDate().getTime());
+            boolean isPresent = false;
+            for ( String s : dates){
+                if ( s.equals(creationDate)) {
+                    isPresent = true;
+                }
+            }
+            if (!isPresent){
+                dates.add(creationDate);
+            }
+        }
+        ArrayList<Integer> number = new ArrayList();
+        for (String s : dates){
+            int nb = 0;
+            for (Item i : items ){
+                String creationDate = sdf.format(i.getCreationDate().getTime());
+                if ( creationDate.equals(s)){
+                    nb= nb +1 ;
+                }
+            }
+            number.add(nb);
+        }
+        XYChart.Series serie = new XYChart.Series();
+
+        for (int i = 0 ; i < dates.size() ; i++){
+            serie.getData().add(new XYChart.Data(dates.get(i), number.get(i)));
+            System.out.println( dates.get(i) + ", " + number.get(i));
+        }
+        bc.getData().setAll(serie);
+
+    }
+
     public void OnUpdate()
     {
         globalInventory.updateQuality();
@@ -120,6 +176,9 @@ public class ShopView implements Initializable {
         fetchItems();
         fetchPiechart();
         pieChart.setVisible(true);
+        FetchBarChartCreationDate();
+        bc.setVisible(true);
+
     }
 
     public void OnLoadFile(){
@@ -186,17 +245,19 @@ public class ShopView implements Initializable {
                    Legendary newLegendary = new Legendary(name, sellin, quality, calendar);
                    globalInventory.addItem(newLegendary);
                }
-
-
             }
             fetchPiechart();
             pieChart.setVisible(true);
+            FetchBarChartCreationDate();
+            bc.setVisible(true);
+
             fetchItems();
 
 
 
 
-            }catch(FileNotFoundException e){
+
+        }catch(FileNotFoundException e){
             System.out.println("json file isn't found");
             e.printStackTrace();
         }catch(IOException e ){
@@ -208,8 +269,4 @@ public class ShopView implements Initializable {
         }
 
     }
-
-
-
-    
 }
