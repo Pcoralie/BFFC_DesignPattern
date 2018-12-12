@@ -5,9 +5,14 @@ import javafx.fxml.Initializable;
 
 import java.io.*;
 import java.net.URL;
+<<<<<<< HEAD:src/main/java/gildedRose/controller/ShopView.java
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+=======
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+>>>>>>> project:src/main/java/gildedRose/controller/ShopView.java
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,6 +22,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
+import javax.swing.*;
 
 public class ShopView implements Initializable {
 
@@ -109,7 +116,20 @@ public class ShopView implements Initializable {
 
     public void OnLoadFile(){
         JSONParser parser = new JSONParser();
-        try{ JSONArray inventory = (JSONArray) parser.parse(new FileReader("inventory.json"));
+        JFileChooser chooser = new JFileChooser();
+        chooser.setCurrentDirectory(new java.io.File("."));
+        //chooser.setDialogTitle("Browse the folder to process");
+        //chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        //chooser.setAcceptAllFileFilterUsed(false);
+        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+            System.out.println("getCurrentDirectory(): "+ chooser.getCurrentDirectory());
+            System.out.println("getSelectedFile() : "+ chooser.getSelectedFile());
+        } else {
+            System.out.println("No Selection ");
+        }
+
+        try {JSONArray inventory = (JSONArray) parser.parse(new FileReader( chooser.getSelectedFile()));
+        //try{ JSONArray inventory = (JSONArray) parser.parse(new FileReader("inventory.json"));
             /*JSONObject jsonObject =(JSONObject) obj;
             JSONArray inventory =(JSONArray) jsonObject.get("inventory");
             System.out.println("\nInventory:");

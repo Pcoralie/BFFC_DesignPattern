@@ -1,4 +1,4 @@
-package gildedRose;
+package gildedRose.model;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;

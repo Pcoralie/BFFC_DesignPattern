@@ -1,4 +1,4 @@
-package gildedRose;
+package gildedRose.model;
 
 import gildedRose.model.Inventory;
 import gildedRose.model.Item;
@@ -7,7 +7,7 @@ import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-public class ElixirTest {
+public class CheeseTest {
 
     @Test
     public void qualityCheck()
@@ -15,12 +15,12 @@ public class ElixirTest {
         Inventory inventory = new Inventory();
         Item[] items = inventory.getItems();
 
-        Item itemElixir = items[2];
+        Item itemCheese = items[1];
 
-        assertThat(itemElixir.getName(), is ("Elixir of the Mongoose"));
-        assertThat(itemElixir.getQuality() , is(7));
+        assertThat(itemCheese.getName(), is ("Aged Brie"));
+        assertThat(itemCheese.getQuality() , is(0));
         inventory.updateQuality();
-        assertThat(items[2].getQuality(), is(6));
+        assertThat(items[1].getQuality(), is(1));
     }
 
     @Test
@@ -29,12 +29,13 @@ public class ElixirTest {
         Inventory inventory = new Inventory();
         Item[] items = inventory.getItems();
 
-        Item itemElixir = items[8];
+        Item itemCheese = items[7];
 
-        assertThat(itemElixir.getName(), is ("Elixir of the Elders"));
-        assertThat(itemElixir.getSellIn(), is (-2));
-        assertThat(itemElixir.getQuality() , is(7));
+        assertThat(itemCheese.getName(), is ("Aged Camembert"));
+        assertThat(itemCheese.getSellIn(), is(-2));
+        assertThat(itemCheese.getQuality() , is(5));
         inventory.updateQuality();
-        assertThat(items[8].getQuality(), is(5));
+        assertThat(items[7].getQuality(), is(7));
     }
+
 }

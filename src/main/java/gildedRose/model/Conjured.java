@@ -1,4 +1,5 @@
 package gildedRose.model;
+<<<<<<< HEAD:src/main/java/gildedRose/model/Conjured.java
 
 import java.util.Calendar;
 
@@ -11,6 +12,8 @@ public class Conjured extends Item {
         this.quality = quality;
         this.creationDate = calendar;
     }
+=======
+>>>>>>> project:src/main/java/gildedRose/model/Conjured.java
 
     public Conjured(String name, int sellIn, int quality)
     {

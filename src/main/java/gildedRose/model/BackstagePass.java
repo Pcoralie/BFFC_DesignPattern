@@ -1,6 +1,9 @@
 package gildedRose.model;
+<<<<<<< HEAD:src/main/java/gildedRose/model/BackstagePass.java
 
 import java.util.Calendar;
+=======
+>>>>>>> project:src/main/java/gildedRose/model/BackstagePass.java
 
 public class BackstagePass extends Item {
 
