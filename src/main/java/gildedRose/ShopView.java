@@ -4,6 +4,7 @@ import javafx.fxml.Initializable;
 
 import java.io.*;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.time.*;
 import javafx.collections.FXCollections;
@@ -125,35 +126,39 @@ public class ShopView implements Initializable {
                Integer sellin = (int) (long)item.get("sellIn");
                Integer quality = (int) (long)item.get("quality");
 
+               Calendar calendar = Calendar.getInstance();
+               String dateOfCreation = (String) item.get("date");
+               SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+               calendar.setTime(sdf.parse(dateOfCreation));
 
                if(name.toLowerCase().contains("elixir"))
                {
-                   Elixir newElixir = new Elixir(name, sellin, quality);
+                   Elixir newElixir = new Elixir(name, sellin, quality, calendar);
                    globalInventory.addItem(newElixir);
                }
                if(name.toLowerCase().contains("dexterity"))
                {
-                   Dexterity newDexterity = new Dexterity(name, sellin, quality);
+                   Dexterity newDexterity = new Dexterity(name, sellin, quality, calendar);
                    globalInventory.addItem(newDexterity);
                }
                if(name.toLowerCase().contains("aged"))
                {
-                   Cheese newCheese = new Cheese(name, sellin, quality);
+                   Cheese newCheese = new Cheese(name, sellin, quality, calendar);
                    globalInventory.addItem(newCheese);
                }
                if(name.toLowerCase().contains("conjured"))
                {
-                   Conjured newConjured = new Conjured(name, sellin, quality);
+                   Conjured newConjured = new Conjured(name, sellin, quality, calendar);
                    globalInventory.addItem(newConjured);
                }
                if(name.toLowerCase().contains("backstage"))
                {
-                   BackstagePass newBackstage = new BackstagePass(name, sellin, quality);
+                   BackstagePass newBackstage = new BackstagePass(name, sellin, quality, calendar);
                    globalInventory.addItem(newBackstage);
                }
                if(name.toLowerCase().contains("sulfuras"))
                {
-                   Legendary newLegendary = new Legendary(name, sellin, quality);
+                   Legendary newLegendary = new Legendary(name, sellin, quality, calendar);
                    globalInventory.addItem(newLegendary);
                }
 

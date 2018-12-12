@@ -1,6 +1,17 @@
 package gildedRose;
 
+import java.util.Calendar;
+
 public class Conjured extends Item{
+    public Conjured(String name, int sellIn, int quality, Calendar calendar)
+    {
+        super();
+        this.name = name;
+        this.sellIn = sellIn;
+        this.quality = quality;
+        this.creationDate = calendar;
+    }
+
     public Conjured(String name, int sellIn, int quality)
     {
         super();

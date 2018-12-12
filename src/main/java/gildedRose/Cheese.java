@@ -1,6 +1,17 @@
 package gildedRose;
 
+import java.util.Calendar;
+
 public class Cheese extends Item {
+    public Cheese(String name, int sellIn, int quality, Calendar calendar)
+    {
+        super();
+        this.name = name;
+        this.sellIn = sellIn;
+        this.quality = quality;
+        this.creationDate = calendar;
+    }
+
     public Cheese(String name, int sellIn, int quality)
     {
         super();

@@ -1,5 +1,7 @@
 package gildedRose;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.time.DayOfWeek;
 
@@ -8,7 +10,7 @@ public class Item implements IUpdate {
     protected String name;
     protected int sellIn;
     protected int quality;
-    protected Date creationDate;
+    protected Calendar creationDate;
 
     public Item(String name, int sellIn, int quality) {
         super();
@@ -141,8 +143,10 @@ public class Item implements IUpdate {
     
     @Override
     public String toString() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
         return name +
                 ", sellIn : " + sellIn +
-                ", quality : " + quality + ", creation Date : " + creationDay.toString() + " " + creationDate.toString();
+                ", quality : " + quality + ", creation Date : " + " " + sdf.format(creationDate.getTime());
     }
 }

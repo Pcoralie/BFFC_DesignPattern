@@ -1,7 +1,18 @@
 package gildedRose;
 
+import java.util.Calendar;
+
 public class BackstagePass extends Item {
 
+
+    public BackstagePass(String name, int sellIn, int quality, Calendar calendar)
+    {
+        super();
+        this.name = name;
+        this.sellIn = sellIn;
+        this.quality = quality;
+        this.creationDate = calendar;
+    }
 
     public BackstagePass(String name, int sellIn, int quality)
     {
