@@ -17,6 +17,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import javax.swing.*;
+
 public class ShopView implements Initializable {
 
     @FXML
@@ -109,7 +111,20 @@ public class ShopView implements Initializable {
 
     public void OnLoadFile(){
         JSONParser parser = new JSONParser();
-        try{ JSONArray inventory = (JSONArray) parser.parse(new FileReader("inventory.json"));
+        JFileChooser chooser = new JFileChooser();
+        chooser.setCurrentDirectory(new java.io.File("."));
+        //chooser.setDialogTitle("Browse the folder to process");
+        //chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        //chooser.setAcceptAllFileFilterUsed(false);
+        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+            System.out.println("getCurrentDirectory(): "+ chooser.getCurrentDirectory());
+            System.out.println("getSelectedFile() : "+ chooser.getSelectedFile());
+        } else {
+            System.out.println("No Selection ");
+        }
+
+        try {JSONArray inventory = (JSONArray) parser.parse(new FileReader( chooser.getSelectedFile()));
+        //try{ JSONArray inventory = (JSONArray) parser.parse(new FileReader("inventory.json"));
             /*JSONObject jsonObject =(JSONObject) obj;
             JSONArray inventory =(JSONArray) jsonObject.get("inventory");
             System.out.println("\nInventory:");

@@ -1,0 +1,15 @@
+[
+  {"name": "+9 Dexterity Vest", "sellIn":10, "quality":20},
+  {"name": "Aged Tome", "sellIn": 2, "quality": 0},
+  {"name": "Elixir of the Mountains", "sellIn": 5,  "quality": 7},
+  {"name": "Sulfuras, Arm of Ragnaros", "sellIn": 0, "quality": 80},
+  {"name": "Backstage passes to a TAFKAL80ETC concert 4", "sellIn": 15, "quality": 20},
+  {"name": "Conjured flowers cake", "sellIn": 3, "quality": 6},
+  { "name":"+8 Dexterity Pants" , "sellIn": -2 , "quality":20},
+  { "name":"Aged Raclette" , "sellIn": -2, "quality":5},
+  { "name": "Elixir of the ocean" , "sellIn": -2 , "quality": 7},
+  { "name":"Backstage passes to a TAFKAL80ETC concert 7" , "sellIn":8 , "quality":20},
+  { "name":"Backstage passes to a TAFKAL80ETC concert 8" , "sellIn":3 , "quality":20},
+  { "name": "Conjured Hello cake ", "sellIn": -2, "quality":6}
+
+]
