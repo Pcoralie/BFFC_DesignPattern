@@ -1,10 +1,7 @@
 package gildedRose.model;
-<<<<<<< HEAD:src/main/java/gildedRose/model/Item.java
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-=======
->>>>>>> project:src/main/java/gildedRose/model/Item.java
 
 public class Item implements IUpdate {
 
