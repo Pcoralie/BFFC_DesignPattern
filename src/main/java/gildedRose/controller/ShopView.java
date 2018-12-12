@@ -157,12 +157,12 @@ public class ShopView implements Initializable {
 
         for (int i = 0 ; i < dates.size() ; i++){
            // bc.getData(dates.get(i) , (Number) number.get(i));
-            serie.getData().add(new XYChart.Data(dates.get(i),number.get(i)));
+
+            serie.getData().add(new XYChart.Data(dates.get(i), number.get(i)));
+
             System.out.println( dates.get(i) + ", " + number.get(i));
         }
         bc.getData().addAll(serie);
-
-       System.out.println(bc);
 
         bc.setVisible(true);
 
