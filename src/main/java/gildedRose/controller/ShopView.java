@@ -57,6 +57,14 @@ public class ShopView implements Initializable {
     NumberAxis yAxis;
 
 
+    public Inventory getGlobalInventory() {
+        return globalInventory;
+    }
+
+    public void setGlobalInventory(Inventory globalInventory) {
+        this.globalInventory = globalInventory;
+    }
+
     Inventory globalInventory = new Inventory(new Item[0]);
 
     int date = 0;
