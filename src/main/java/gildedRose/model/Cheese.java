@@ -1,6 +1,20 @@
 package gildedRose.model;
+<<<<<<< HEAD:src/main/java/gildedRose/model/Cheese.java
+
+import java.util.Calendar;
+=======
+>>>>>>> project:src/main/java/gildedRose/model/Cheese.java
 
 public class Cheese extends Item {
+    public Cheese(String name, int sellIn, int quality, Calendar calendar)
+    {
+        super();
+        this.name = name;
+        this.sellIn = sellIn;
+        this.quality = quality;
+        this.creationDate = calendar;
+    }
+
     public Cheese(String name, int sellIn, int quality)
     {
         super();

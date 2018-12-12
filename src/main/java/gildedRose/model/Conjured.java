@@ -1,6 +1,20 @@
 package gildedRose.model;
+<<<<<<< HEAD:src/main/java/gildedRose/model/Conjured.java
 
-public class Conjured extends Item{
+import java.util.Calendar;
+
+public class Conjured extends Item {
+    public Conjured(String name, int sellIn, int quality, Calendar calendar)
+    {
+        super();
+        this.name = name;
+        this.sellIn = sellIn;
+        this.quality = quality;
+        this.creationDate = calendar;
+    }
+=======
+>>>>>>> project:src/main/java/gildedRose/model/Conjured.java
+
     public Conjured(String name, int sellIn, int quality)
     {
         super();

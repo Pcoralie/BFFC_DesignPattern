@@ -1,11 +1,17 @@
 package gildedRose.model;
+<<<<<<< HEAD:src/main/java/gildedRose/model/Item.java
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+=======
+>>>>>>> project:src/main/java/gildedRose/model/Item.java
 
 public class Item implements IUpdate {
 
     protected String name;
     protected int sellIn;
-
     protected int quality;
+    protected Calendar creationDate;
 
     public Item(String name, int sellIn, int quality) {
         super();
@@ -138,8 +144,10 @@ public class Item implements IUpdate {
     
     @Override
     public String toString() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
         return name +
                 ", sellIn : " + sellIn +
-                ", quality : " + quality;
+                ", quality : " + quality + ", creation Date : " + " " + sdf.format(creationDate.getTime());
     }
 }
