@@ -1,5 +1,7 @@
-package gildedRose;
+package gildedRose.model;
 
+import gildedRose.model.Inventory;
+import gildedRose.model.Item;
 import org.junit.*;
 import junit.framework.TestCase;
 
