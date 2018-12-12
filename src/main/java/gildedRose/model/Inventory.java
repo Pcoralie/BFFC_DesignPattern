@@ -1,5 +1,5 @@
 
-package gildedRose;
+package gildedRose.model;
 
 
 public class Inventory {

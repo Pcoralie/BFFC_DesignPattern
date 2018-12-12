@@ -1,4 +1,6 @@
-package gildedRose;
+package gildedRose.model;
+
+import gildedRose.model.Item;
 
 public class Legendary extends Item {
     public Legendary(String name, int sellIn, int quality)

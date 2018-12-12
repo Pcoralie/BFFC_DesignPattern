@@ -1,4 +1,4 @@
-package gildedRose;
+package gildedRose.model;
 
 public class Conjured extends Item{
     public Conjured(String name, int sellIn, int quality)

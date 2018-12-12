@@ -1,5 +1,7 @@
-package gildedRose;
+package gildedRose.model;
 
+
+import gildedRose.model.Item;
 
 public interface IUpdate {
     void updateQuality(Item item);

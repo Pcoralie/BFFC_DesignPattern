@@ -1,4 +1,4 @@
-package gildedRose;
+package gildedRose.model;
 
 public class Item implements IUpdate {
 

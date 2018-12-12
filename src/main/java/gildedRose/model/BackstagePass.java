@@ -1,4 +1,4 @@
-package gildedRose;
+package gildedRose.model;
 
 public class BackstagePass extends Item {
 
