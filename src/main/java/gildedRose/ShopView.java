@@ -4,10 +4,8 @@ import javafx.fxml.Initializable;
 
 import java.io.*;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -127,6 +125,10 @@ public class ShopView implements Initializable {
                String name = (String) item.get("name");
                Integer sellin = (int) (long)item.get("sellIn");
                Integer quality = (int) (long)item.get("quality");
+               Date creationDate ;
+               if ( date == 0){
+                   creationDate = Calendar.get(Calendar.DAY_OF_MONTH);
+               }
 
                if(name.toLowerCase().contains("elixir"))
                {

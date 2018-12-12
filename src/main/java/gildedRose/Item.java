@@ -8,7 +8,7 @@ public class Item implements IUpdate {
     protected int sellIn;
 
     protected int quality;
-
+    protected Date creationDate;
 
 
 
