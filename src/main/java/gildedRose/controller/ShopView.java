@@ -51,6 +51,10 @@ public class ShopView implements Initializable {
 
     @FXML
     BarChart<String, Number> bc;
+    @FXML
+    CategoryAxis xAxis;
+    @FXML
+    NumberAxis yAxis;
 
 
     Inventory globalInventory = new Inventory(new Item[0]);
@@ -119,17 +123,18 @@ public class ShopView implements Initializable {
 
     public void FetchBarChartCreationDate(){
         Item [] items = globalInventory.getItems();
+        bc.autosize();
 
-        CategoryAxis xAxis = new CategoryAxis();
-        NumberAxis yAxis = new NumberAxis();
-        BarChart<String, Number> bc = new BarChart<String, Number>(xAxis, yAxis);
-        bc.setTitle("Number of Items by creation date");
-        xAxis.setLabel("creation date");
-        yAxis.setLabel("number of items");
 
+        //CategoryAxis xAxis = new CategoryAxis();
+        //NumberAxis yAxis = new NumberAxis();
+        //BarChart<String, Number> bc = new BarChart<String, Number>(xAxis, yAxis);
+        //bc = new BarChart<String, Number>(xAxis, yAxis);
+        //bc.setTitle("Number of Items by creation date");
+        //xAxis.setLabel("creation date");
+        //yAxis.setLabel("number of items");
         ArrayList<String> dates = new ArrayList();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-
         for (Item i : items ) {
             String creationDate = sdf.format(i.getCreationDate().getTime());
             boolean isPresent = false;
@@ -156,16 +161,10 @@ public class ShopView implements Initializable {
         XYChart.Series serie = new XYChart.Series();
 
         for (int i = 0 ; i < dates.size() ; i++){
-           // bc.getData(dates.get(i) , (Number) number.get(i));
-
             serie.getData().add(new XYChart.Data(dates.get(i), number.get(i)));
-
             System.out.println( dates.get(i) + ", " + number.get(i));
         }
-        bc.getData().addAll(serie);
-
-        bc.setVisible(true);
-
+        bc.getData().setAll(serie);
 
     }
 
@@ -246,19 +245,19 @@ public class ShopView implements Initializable {
                    Legendary newLegendary = new Legendary(name, sellin, quality, calendar);
                    globalInventory.addItem(newLegendary);
                }
-
-
             }
             fetchPiechart();
             pieChart.setVisible(true);
-            fetchItems();
             FetchBarChartCreationDate();
             bc.setVisible(true);
 
+            fetchItems();
 
 
 
-            }catch(FileNotFoundException e){
+
+
+        }catch(FileNotFoundException e){
             System.out.println("json file isn't found");
             e.printStackTrace();
         }catch(IOException e ){
@@ -270,8 +269,4 @@ public class ShopView implements Initializable {
         }
 
     }
-
-
-
-    
 }
