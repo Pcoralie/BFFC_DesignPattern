@@ -1,11 +1,14 @@
 package gildedRose;
 
+import java.util.Date;
+import java.time.DayOfWeek;
+
 public class Item implements IUpdate {
 
     protected String name;
     protected int sellIn;
-
     protected int quality;
+    protected Date creationDate;
 
     public Item(String name, int sellIn, int quality) {
         super();
@@ -140,6 +143,6 @@ public class Item implements IUpdate {
     public String toString() {
         return name +
                 ", sellIn : " + sellIn +
-                ", quality : " + quality;
+                ", quality : " + quality + ", creation Date : " + creationDay.toString() + " " + creationDate.toString();
     }
 }

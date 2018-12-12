@@ -4,10 +4,8 @@ import javafx.fxml.Initializable;
 
 import java.io.*;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
+import java.time.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -40,9 +38,8 @@ public class ShopView implements Initializable {
 
     Inventory globalInventory = new Inventory(new Item[0]);
 
-
-
     int date = 0;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -127,6 +124,7 @@ public class ShopView implements Initializable {
                String name = (String) item.get("name");
                Integer sellin = (int) (long)item.get("sellIn");
                Integer quality = (int) (long)item.get("quality");
+
 
                if(name.toLowerCase().contains("elixir"))
                {
