@@ -1,5 +1,7 @@
 package gildedRose.model;
 
+import java.util.Calendar;
+
 public class Elixir extends Item {
 
     public Elixir(String name, int sellIn, int quality)
@@ -8,6 +10,15 @@ public class Elixir extends Item {
         this.name = name;
         this.sellIn = sellIn;
         this.quality = quality;
+    }
+
+    public Elixir(String name, int sellIn, int quality, Calendar calendar)
+    {
+        super();
+        this.name = name;
+        this.sellIn = sellIn;
+        this.quality = quality;
+        this.creationDate = calendar;
     }
 
     public void updateQuality()

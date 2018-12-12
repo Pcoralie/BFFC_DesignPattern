@@ -37,9 +37,13 @@ public class ShopView implements Initializable {
     Button buttonLoadFile;
     @FXML
     PieChart pieChart;
-
+    @FXML
+    ListView listViewSupplierInventory;
+    @FXML
+    Button buttonBuyItem;
 
     Inventory globalInventory = new Inventory(new Item[0]);
+    Inventory supplierInventory = new Inventory(new Item[0]);
 
     int date = 0;
 
@@ -52,6 +56,7 @@ public class ShopView implements Initializable {
 
         //fetchItems();
         //fetchPiechart();
+        loadSupplier();
 
     }
 
@@ -196,6 +201,94 @@ public class ShopView implements Initializable {
         }catch(Exception e ){
             e.printStackTrace();
         }
+
+
+
+    }
+
+    public void fetchSupplier()
+    {
+        ObservableList<String> allItems;
+        ArrayList<String> itemsToFetch = new ArrayList<String>();
+
+
+
+        for(int i = 0; i<supplierInventory.getItems().length; i++)
+        {
+            itemsToFetch.add(supplierInventory.getItems()[i].toString());
+        }
+        allItems = FXCollections.observableArrayList(itemsToFetch);
+        listViewSupplierInventory.setItems(allItems);
+    }
+
+
+    public void loadSupplier()
+    {
+        JSONParser parser = new JSONParser();
+
+
+        try {
+        JSONArray inventory = (JSONArray) parser.parse(new FileReader("inventory.json"));
+
+
+            for(Object o : inventory)
+            {
+
+                JSONObject item = (JSONObject) o;
+                String name = (String) item.get("name");
+                Integer sellin = (int) (long)item.get("sellIn");
+                Integer quality = (int) (long)item.get("quality");
+
+                Calendar calendar = Calendar.getInstance();
+                String dateOfCreation = (String) item.get("date");
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                calendar.setTime(sdf.parse(dateOfCreation));
+
+                if(name.toLowerCase().contains("elixir"))
+                {
+                    Elixir newElixir = new Elixir(name, sellin, quality, calendar);
+                    supplierInventory.addItem(newElixir);
+                }
+                if(name.toLowerCase().contains("dexterity"))
+                {
+                    Dexterity newDexterity = new Dexterity(name, sellin, quality, calendar);
+                    supplierInventory.addItem(newDexterity);
+                }
+                if(name.toLowerCase().contains("aged"))
+                {
+                    Cheese newCheese = new Cheese(name, sellin, quality, calendar);
+                    supplierInventory.addItem(newCheese);
+                }
+                if(name.toLowerCase().contains("conjured"))
+                {
+                    Conjured newConjured = new Conjured(name, sellin, quality, calendar);
+                    supplierInventory.addItem(newConjured);
+                }
+                if(name.toLowerCase().contains("backstage"))
+                {
+                    BackstagePass newBackstage = new BackstagePass(name, sellin, quality, calendar);
+                    supplierInventory.addItem(newBackstage);
+                }
+                if(name.toLowerCase().contains("sulfuras"))
+                {
+                    Legendary newLegendary = new Legendary(name, sellin, quality, calendar);
+                    supplierInventory.addItem(newLegendary);
+                }
+
+                fetchSupplier();
+
+
+            }
+            }catch(FileNotFoundException e){
+                System.out.println("json file isn't found");
+                e.printStackTrace();
+            }catch(IOException e ){
+                e.printStackTrace();
+            }catch(ParseException e){
+                e.printStackTrace();
+            }catch(Exception e ){
+                e.printStackTrace();
+            }
 
     }
 

@@ -1,11 +1,8 @@
 package gildedRose.model;
 
 import gildedRose.model.Item;
-<<<<<<< HEAD:src/main/java/gildedRose/model/Legendary.java
 
 import java.util.Calendar;
-=======
->>>>>>> project:src/main/java/gildedRose/model/Legendary.java
 
 public class Legendary extends Item {
     public Legendary(String name, int sellIn, int quality, Calendar calendar)
