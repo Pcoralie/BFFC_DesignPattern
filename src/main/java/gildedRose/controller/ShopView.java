@@ -1,24 +1,27 @@
-package gildedRose;
+package gildedRose.controller;
 
+import gildedRose.model.*;
 import javafx.fxml.Initializable;
 
 import java.io.*;
 import java.net.URL;
+
+import java.text.SimpleDateFormat;
 import java.util.*;
 
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.stage.FileChooser;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
+import javax.swing.*;
 
 public class ShopView implements Initializable {
 
@@ -38,9 +41,8 @@ public class ShopView implements Initializable {
 
     Inventory globalInventory = new Inventory(new Item[0]);
 
-
-
     int date = 0;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -112,7 +114,20 @@ public class ShopView implements Initializable {
 
     public void OnLoadFile(){
         JSONParser parser = new JSONParser();
-        try{ JSONArray inventory = (JSONArray) parser.parse(new FileReader("inventory.json"));
+        JFileChooser chooser = new JFileChooser();
+        chooser.setCurrentDirectory(new java.io.File("."));
+        //chooser.setDialogTitle("Browse the folder to process");
+        //chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        //chooser.setAcceptAllFileFilterUsed(false);
+        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+            System.out.println("getCurrentDirectory(): "+ chooser.getCurrentDirectory());
+            System.out.println("getSelectedFile() : "+ chooser.getSelectedFile());
+        } else {
+            System.out.println("No Selection ");
+        }
+
+        try {JSONArray inventory = (JSONArray) parser.parse(new FileReader( chooser.getSelectedFile()));
+        //try{ JSONArray inventory = (JSONArray) parser.parse(new FileReader("inventory.json"));
             /*JSONObject jsonObject =(JSONObject) obj;
             JSONArray inventory =(JSONArray) jsonObject.get("inventory");
             System.out.println("\nInventory:");
@@ -125,39 +140,40 @@ public class ShopView implements Initializable {
                String name = (String) item.get("name");
                Integer sellin = (int) (long)item.get("sellIn");
                Integer quality = (int) (long)item.get("quality");
-               Date creationDate ;
-               if ( date == 0){
-                   creationDate = Calendar.get(Calendar.DAY_OF_MONTH);
-               }
+
+               Calendar calendar = Calendar.getInstance();
+               String dateOfCreation = (String) item.get("date");
+               SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+               calendar.setTime(sdf.parse(dateOfCreation));
 
                if(name.toLowerCase().contains("elixir"))
                {
-                   Elixir newElixir = new Elixir(name, sellin, quality);
+                   Elixir newElixir = new Elixir(name, sellin, quality, calendar);
                    globalInventory.addItem(newElixir);
                }
                if(name.toLowerCase().contains("dexterity"))
                {
-                   Dexterity newDexterity = new Dexterity(name, sellin, quality);
+                   Dexterity newDexterity = new Dexterity(name, sellin, quality, calendar);
                    globalInventory.addItem(newDexterity);
                }
                if(name.toLowerCase().contains("aged"))
                {
-                   Cheese newCheese = new Cheese(name, sellin, quality);
+                   Cheese newCheese = new Cheese(name, sellin, quality, calendar);
                    globalInventory.addItem(newCheese);
                }
                if(name.toLowerCase().contains("conjured"))
                {
-                   Conjured newConjured = new Conjured(name, sellin, quality);
+                   Conjured newConjured = new Conjured(name, sellin, quality, calendar);
                    globalInventory.addItem(newConjured);
                }
                if(name.toLowerCase().contains("backstage"))
                {
-                   BackstagePass newBackstage = new BackstagePass(name, sellin, quality);
+                   BackstagePass newBackstage = new BackstagePass(name, sellin, quality, calendar);
                    globalInventory.addItem(newBackstage);
                }
                if(name.toLowerCase().contains("sulfuras"))
                {
-                   Legendary newLegendary = new Legendary(name, sellin, quality);
+                   Legendary newLegendary = new Legendary(name, sellin, quality, calendar);
                    globalInventory.addItem(newLegendary);
                }
 
@@ -182,7 +198,6 @@ public class ShopView implements Initializable {
         }
 
     }
-
 
 
 

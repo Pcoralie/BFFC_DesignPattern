@@ -1,4 +1,4 @@
-package gildedRose;
+package gildedRose.model;
 
 public class Dexterity extends Item {
     public Dexterity(String name, int sellIn, int quality)
