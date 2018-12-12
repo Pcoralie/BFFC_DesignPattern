@@ -1,4 +1,4 @@
-package gildedRose;
+package gildedRose.model;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
