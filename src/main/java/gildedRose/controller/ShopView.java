@@ -5,14 +5,13 @@ import javafx.fxml.Initializable;
 
 import java.io.*;
 import java.net.URL;
-<<<<<<< HEAD:src/main/java/gildedRose/controller/ShopView.java
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-=======
+
 import java.util.ArrayList;
 import java.util.ResourceBundle;
->>>>>>> project:src/main/java/gildedRose/controller/ShopView.java
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
