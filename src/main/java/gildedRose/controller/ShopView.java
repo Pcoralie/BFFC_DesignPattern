@@ -56,6 +56,8 @@ public class ShopView implements Initializable {
     @FXML
     NumberAxis yAxis;
 
+    @FXML
+    BarChart<String, Number> barChartSI;
 
     public Inventory getGlobalInventory() {
         return globalInventory;
@@ -76,6 +78,7 @@ public class ShopView implements Initializable {
         labelDate.setText("Jour : " + Integer.toString(date));
         pieChart.setVisible(false);
         bc.setVisible(false);
+        barChartSI.setVisible(false);
 
         //fetchItems();
         //fetchPiechart();
@@ -127,6 +130,51 @@ public class ShopView implements Initializable {
                 );
 
         pieChart.setData(pieChartData);
+    }
+
+
+    public void FetchBarChartSI(){
+        Item [] items = globalInventory.getItems();
+        barChartSI.autosize();
+
+        ArrayList<Integer> SellIn = new ArrayList();
+        for(Item item : items)
+        {
+            boolean isPresent = false;
+            for(Integer integer: SellIn)
+            {
+                if(integer.equals(item.getSellIn()))
+                {
+                    isPresent = true;
+                }
+            }
+            if(!isPresent)
+            {
+                SellIn.add(item.getSellIn());
+            }
+        }
+        Collections.sort(SellIn);
+
+        ArrayList<Integer> NumberOfItems = new ArrayList();
+        for (Integer integer: SellIn)
+        {
+            int nb = 0;
+            for(Item item : items)
+            {
+                if (integer.equals(item.getSellIn()))
+                {
+                    nb++;
+                }
+            }
+            NumberOfItems.add(nb);
+        }
+
+        XYChart.Series serie = new XYChart.Series();
+        for (int i = 0 ; i < SellIn.size() ; i++){
+            serie.getData().add(new XYChart.Data(SellIn.get(i).toString(), NumberOfItems.get(i)));
+            System.out.println( SellIn.get(i) + ", " + NumberOfItems.get(i));
+        }
+        barChartSI.getData().setAll(serie);
     }
 
     public void FetchBarChartCreationDate(){
@@ -186,6 +234,8 @@ public class ShopView implements Initializable {
         pieChart.setVisible(true);
         FetchBarChartCreationDate();
         bc.setVisible(true);
+        FetchBarChartSI();
+        barChartSI.setVisible(true);
 
     }
 
@@ -258,6 +308,8 @@ public class ShopView implements Initializable {
             pieChart.setVisible(true);
             FetchBarChartCreationDate();
             bc.setVisible(true);
+            FetchBarChartSI();
+            barChartSI.setVisible(true);
 
             fetchItems();
 
