@@ -23,7 +23,7 @@
             <PieChart fx:id="pieChart" layoutX="581.0" layoutY="21.0" prefHeight="209.0" prefWidth="258.0" title="PieChart" />
             <ListView fx:id="listViewSupplierInventory" layoutX="575.0" layoutY="292.0" prefHeight="200.0" prefWidth="410.0" />
             <Label layoutX="720.0" layoutY="268.0" prefHeight="17.0" prefWidth="120.0" text="Buy items to supplier :" textAlignment="CENTER" />
-            <Button fx:id="buttonBuyItem" layoutX="749.0" layoutY="501.0" mnemonicParsing="false" text="Buy Item" />
+            <Button fx:id="buttonBuyItem" layoutX="749.0" layoutY="501.0" mnemonicParsing="false" onAction="#OnBuyItem" text="Buy Item" />
              
          </children>
       </Pane>
