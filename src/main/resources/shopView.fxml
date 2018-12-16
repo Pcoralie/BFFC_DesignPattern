@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="969.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gildedRose.controller.ShopView">
+<AnchorPane prefHeight="600.0" prefWidth="1228.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gildedRose.controller.ShopView">
    <children>
-      <Pane id="generalPane" fx:id="generalPane" layoutX="-7.0" prefHeight="600.0" prefWidth="863.0">
+      <Pane id="generalPane" fx:id="generalPane" layoutX="-7.0" prefHeight="600.0" prefWidth="1241.0">
          <children>
             <Button fx:id="buttonUpdate" layoutX="31.0" layoutY="513.0" mnemonicParsing="false" onAction="#OnUpdate" prefHeight="65.0" prefWidth="343.0" text="Update Shop" />
             <Label fx:id="labelShopItems" layoutX="31.0" layoutY="42.0" prefHeight="43.0" prefWidth="425.0" text="The shop contains those items : ">
@@ -30,6 +30,14 @@
               </xAxis>
               <yAxis>
                 <NumberAxis fx:id="yAxis" label="Number of Items" prefHeight="50.0" prefWidth="49.0" side="LEFT" />
+              </yAxis>
+            </BarChart>
+            <BarChart fx:id="barChartSI" title="Number of Items by SellIn" layoutX="888.0" layoutY="21.0" prefHeight="239.0" prefWidth="326.0">
+              <xAxis>
+                <CategoryAxis label="SellIn" side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis  label="Number of Items" side="LEFT" />
               </yAxis>
             </BarChart>
              
