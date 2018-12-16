@@ -6,7 +6,6 @@ import java.util.Calendar;
 
 public class Item implements IUpdate {
 
-    protected int id;
     protected String name;
     protected int sellIn;
     protected int quality;
@@ -47,13 +46,6 @@ public class Item implements IUpdate {
         this.quality = quality;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public Calendar getCreationDate() {
         return creationDate;

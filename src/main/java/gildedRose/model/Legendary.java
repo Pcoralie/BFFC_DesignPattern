@@ -22,15 +22,6 @@ public class Legendary extends Item {
         this.quality = quality;
     }
 
-    public Legendary(String name, int sellIn, int quality, Calendar calendar, int id)
-    {
-        super();
-        this.name = name;
-        this.sellIn = sellIn;
-        this.quality = quality;
-        this.creationDate = calendar;
-        this.id = id;
-    }
 
     public Legendary() {
     }

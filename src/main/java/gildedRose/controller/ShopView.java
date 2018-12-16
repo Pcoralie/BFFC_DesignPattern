@@ -46,8 +46,6 @@ public class ShopView implements Initializable {
     Inventory supplierInventory = new Inventory(new Item[0]);
 
     int date = 0;
-    int indexGlobal = 0;
-    int indexSupplier = 0;
 
 
     @Override
@@ -156,39 +154,34 @@ public class ShopView implements Initializable {
 
                if(name.toLowerCase().contains("elixir"))
                {
-                   Elixir newElixir = new Elixir(name, sellin, quality, calendar, indexGlobal);
+                   Elixir newElixir = new Elixir(name, sellin, quality, calendar);
                    globalInventory.addItem(newElixir);
-                   indexGlobal ++;
+
                }
                if(name.toLowerCase().contains("dexterity"))
                {
-                   Dexterity newDexterity = new Dexterity(name, sellin, quality, calendar, indexGlobal);
+                   Dexterity newDexterity = new Dexterity(name, sellin, quality, calendar);
                    globalInventory.addItem(newDexterity);
-                   indexGlobal ++;
                }
                if(name.toLowerCase().contains("aged"))
                {
-                   Cheese newCheese = new Cheese(name, sellin, quality, calendar, indexGlobal);
+                   Cheese newCheese = new Cheese(name, sellin, quality, calendar);
                    globalInventory.addItem(newCheese);
-                   indexGlobal ++;
                }
                if(name.toLowerCase().contains("conjured"))
                {
-                   Conjured newConjured = new Conjured(name, sellin, quality, calendar, indexGlobal);
+                   Conjured newConjured = new Conjured(name, sellin, quality, calendar);
                    globalInventory.addItem(newConjured);
-                   indexGlobal ++;
                }
                if(name.toLowerCase().contains("backstage"))
                {
-                   BackstagePass newBackstage = new BackstagePass(name, sellin, quality, calendar, indexGlobal);
+                   BackstagePass newBackstage = new BackstagePass(name, sellin, quality, calendar);
                    globalInventory.addItem(newBackstage);
-                   indexGlobal ++;
                }
                if(name.toLowerCase().contains("sulfuras"))
                {
-                   Legendary newLegendary = new Legendary(name, sellin, quality, calendar, indexGlobal);
+                   Legendary newLegendary = new Legendary(name, sellin, quality, calendar);
                    globalInventory.addItem(newLegendary);
-                   indexGlobal ++;
                }
 
 
@@ -257,39 +250,33 @@ public class ShopView implements Initializable {
 
                 if(name.toLowerCase().contains("elixir"))
                 {
-                    Elixir newElixir = new Elixir(name, sellin, quality, calendar, indexSupplier);
+                    Elixir newElixir = new Elixir(name, sellin, quality, calendar);
                     supplierInventory.addItem(newElixir);
-                    indexSupplier ++;
                 }
                 if(name.toLowerCase().contains("dexterity"))
                 {
-                    Dexterity newDexterity = new Dexterity(name, sellin, quality, calendar, indexSupplier);
+                    Dexterity newDexterity = new Dexterity(name, sellin, quality, calendar);
                     supplierInventory.addItem(newDexterity);
-                    indexSupplier ++;
                 }
                 if(name.toLowerCase().contains("aged"))
                 {
-                    Cheese newCheese = new Cheese(name, sellin, quality, calendar, indexSupplier);
+                    Cheese newCheese = new Cheese(name, sellin, quality, calendar);
                     supplierInventory.addItem(newCheese);
-                    indexSupplier ++;
                 }
                 if(name.toLowerCase().contains("conjured"))
                 {
-                    Conjured newConjured = new Conjured(name, sellin, quality, calendar, indexSupplier);
+                    Conjured newConjured = new Conjured(name, sellin, quality, calendar);
                     supplierInventory.addItem(newConjured);
-                    indexSupplier ++;
                 }
                 if(name.toLowerCase().contains("backstage"))
                 {
-                    BackstagePass newBackstage = new BackstagePass(name, sellin, quality, calendar, indexSupplier);
+                    BackstagePass newBackstage = new BackstagePass(name, sellin, quality, calendar);
                     supplierInventory.addItem(newBackstage);
-                    indexSupplier ++;
                 }
                 if(name.toLowerCase().contains("sulfuras"))
                 {
-                    Legendary newLegendary = new Legendary(name, sellin, quality, calendar, indexSupplier);
+                    Legendary newLegendary = new Legendary(name, sellin, quality, calendar);
                     supplierInventory.addItem(newLegendary);
-                    indexSupplier ++;
                 }
 
                 fetchSupplier();
@@ -316,40 +303,49 @@ public class ShopView implements Initializable {
         if(supplierInventory.getItems()[indexItemSelected] instanceof Cheese)
         {
             Item itemSelected = supplierInventory.getItems()[indexItemSelected];
-            globalInventory.addItem(new Cheese(itemSelected.getName(), itemSelected.getSellIn(), itemSelected.getQuality(), itemSelected.getCreationDate(), indexGlobal));
-            indexGlobal++;
+            globalInventory.addItem(new Cheese(itemSelected.getName(), itemSelected.getSellIn(), itemSelected.getQuality(), itemSelected.getCreationDate()));
         }
         if(supplierInventory.getItems()[indexItemSelected] instanceof Conjured)
         {
             Item itemSelected = supplierInventory.getItems()[indexItemSelected];
-            globalInventory.addItem(new Conjured(itemSelected.getName(), itemSelected.getSellIn(), itemSelected.getQuality(), itemSelected.getCreationDate(), indexGlobal));
-            indexGlobal++;
+            globalInventory.addItem(new Conjured(itemSelected.getName(), itemSelected.getSellIn(), itemSelected.getQuality(), itemSelected.getCreationDate()));
+
         }
         if(supplierInventory.getItems()[indexItemSelected] instanceof BackstagePass)
         {
             Item itemSelected = supplierInventory.getItems()[indexItemSelected];
-            globalInventory.addItem(new BackstagePass(itemSelected.getName(), itemSelected.getSellIn(), itemSelected.getQuality(), itemSelected.getCreationDate(), indexGlobal));
-            indexGlobal++;
+            globalInventory.addItem(new BackstagePass(itemSelected.getName(), itemSelected.getSellIn(), itemSelected.getQuality(), itemSelected.getCreationDate()));
+
         }
         if(supplierInventory.getItems()[indexItemSelected] instanceof Dexterity)
         {
             Item itemSelected = supplierInventory.getItems()[indexItemSelected];
-            globalInventory.addItem(new Dexterity(itemSelected.getName(), itemSelected.getSellIn(), itemSelected.getQuality(), itemSelected.getCreationDate(), indexGlobal));
-            indexGlobal++;
+            globalInventory.addItem(new Dexterity(itemSelected.getName(), itemSelected.getSellIn(), itemSelected.getQuality(), itemSelected.getCreationDate()));
+
         }
         if(supplierInventory.getItems()[indexItemSelected] instanceof Elixir)
         {
             Item itemSelected = supplierInventory.getItems()[indexItemSelected];
-            globalInventory.addItem(new Elixir(itemSelected.getName(), itemSelected.getSellIn(), itemSelected.getQuality(), itemSelected.getCreationDate(), indexGlobal));
-            indexGlobal++;
+            globalInventory.addItem(new Elixir(itemSelected.getName(), itemSelected.getSellIn(), itemSelected.getQuality(), itemSelected.getCreationDate()));
+
         }
         if(supplierInventory.getItems()[indexItemSelected] instanceof Legendary)
         {
             Item itemSelected = supplierInventory.getItems()[indexItemSelected];
-            globalInventory.addItem(new Legendary(itemSelected.getName(), itemSelected.getSellIn(), itemSelected.getQuality(), itemSelected.getCreationDate(), indexGlobal));
-            indexGlobal++;
+            globalInventory.addItem(new Legendary(itemSelected.getName(), itemSelected.getSellIn(), itemSelected.getQuality(), itemSelected.getCreationDate()));
+
         }
 
+        fetchItems();
+        fetchSupplier();
+        fetchPiechart();
+        pieChart.setVisible(true);
+    }
+
+    public void OnSellItem()
+    {
+        int indexItemSelected = listViewShop.getSelectionModel().getSelectedIndex();
+        globalInventory.deleteItem(indexItemSelected);
         fetchItems();
         fetchSupplier();
         fetchPiechart();
