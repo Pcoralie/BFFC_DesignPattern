@@ -46,6 +46,15 @@ public class ShopView implements Initializable {
     Label labelDate;
     @FXML
     Button buttonLoadFile;
+
+    public PieChart getPieChart() {
+        return pieChart;
+    }
+
+    public void setPieChart(PieChart pieChart) {
+        this.pieChart = pieChart;
+    }
+
     @FXML
     PieChart pieChart;
 
@@ -58,6 +67,11 @@ public class ShopView implements Initializable {
 
     @FXML
     BarChart<String, Number> barChartSI;
+
+    public ShopView() {
+        this.globalInventory = new Inventory(new Item[0]);
+        this.date = 0;
+    }
 
     public Inventory getGlobalInventory() {
         return globalInventory;
@@ -180,8 +194,6 @@ public class ShopView implements Initializable {
     public void FetchBarChartCreationDate(){
         Item [] items = globalInventory.getItems();
         bc.autosize();
-
-
         //CategoryAxis xAxis = new CategoryAxis();
         //NumberAxis yAxis = new NumberAxis();
         //BarChart<String, Number> bc = new BarChart<String, Number>(xAxis, yAxis);
@@ -239,10 +251,10 @@ public class ShopView implements Initializable {
 
     }
 
-    public void OnLoadFile(){
-        JSONParser parser = new JSONParser();
+    public File ChooseFile(){
         JFileChooser chooser = new JFileChooser();
         chooser.setCurrentDirectory(new java.io.File("."));
+
         //chooser.setDialogTitle("Browse the folder to process");
         //chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         //chooser.setAcceptAllFileFilterUsed(false);
@@ -253,7 +265,16 @@ public class ShopView implements Initializable {
             System.out.println("No Selection ");
         }
 
-        try {JSONArray inventory = (JSONArray) parser.parse(new FileReader( chooser.getSelectedFile()));
+        File file = chooser.getSelectedFile();
+        return file;
+    }
+
+    public void OnLoadFile(){
+        JSONParser parser = new JSONParser();
+            File jsonFile = ChooseFile();
+
+
+        try {JSONArray inventory = (JSONArray) parser.parse(new FileReader( jsonFile));
         //try{ JSONArray inventory = (JSONArray) parser.parse(new FileReader("inventory.json"));
             /*JSONObject jsonObject =(JSONObject) obj;
             JSONArray inventory =(JSONArray) jsonObject.get("inventory");

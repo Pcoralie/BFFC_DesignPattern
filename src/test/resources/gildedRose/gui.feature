@@ -4,7 +4,9 @@
 Feature: JSON File
 
   Scenario: Load JSON File
-    Given I have a json file "inventory.json"
-    Then the inventory is
+    #Given I choose a json file
+    Given I have an empty Inventory
+    #Then The piechart is empty
     When the user click on the load file button
     Then items are add to the inventory
+   # Then the piechart is updated
