@@ -55,13 +55,6 @@ public class Item implements IUpdate {
     }
 
 
-    public Calendar getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(Calendar creationDate) {
-        this.creationDate = creationDate;
-    }
 
     /*
     public void update(Cheese aged_brie)
