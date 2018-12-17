@@ -1,0 +1,4 @@
+
+Elixir of the Mongoose, sellIn : 5, quality : 7, creation Date :  18/11/2019
+Backstage passes to a TAFKAL80ETC concert, sellIn : 15, quality : 20, creation Date :  20/11/2019
++6 Dexterity Pants, sellIn : -2, quality : 20, creation Date :  22/11/2019
