@@ -71,6 +71,12 @@ public class ShopView implements Initializable {
 
     int date = 0;
 
+    //Constructor
+    public ShopView() {
+        this.globalInventory = new Inventory(new Item[0]);
+        this.supplierInventory = new Inventory(new Item[0]);
+        this.date = 0;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
