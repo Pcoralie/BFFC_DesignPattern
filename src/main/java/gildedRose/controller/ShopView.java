@@ -181,35 +181,27 @@ public class ShopView implements Initializable {
     public void FetchBarChartCreationDate(){
         Item [] items = globalInventory.getItems();
         bc.autosize();
-
-
-        //CategoryAxis xAxis = new CategoryAxis();
-        //NumberAxis yAxis = new NumberAxis();
-        //BarChart<String, Number> bc = new BarChart<String, Number>(xAxis, yAxis);
-        //bc = new BarChart<String, Number>(xAxis, yAxis);
-        //bc.setTitle("Number of Items by creation date");
-        //xAxis.setLabel("creation date");
-        //yAxis.setLabel("number of items");
-        ArrayList<String> dates = new ArrayList();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        
+        ArrayList<Calendar> dates = new ArrayList<>();
         for (Item i : items ) {
-            String creationDate = sdf.format(i.getCreationDate().getTime());
             boolean isPresent = false;
-            for ( String s : dates){
-                if ( s.equals(creationDate)) {
+            for ( Calendar s : dates){
+                if ( s.equals(i.getCreationDate())) {
                     isPresent = true;
                 }
             }
             if (!isPresent){
-                dates.add(creationDate);
+                dates.add(i.getCreationDate());
             }
         }
+
+        Collections.sort(dates);
+
         ArrayList<Integer> number = new ArrayList();
-        for (String s : dates){
+        for (Calendar s : dates){
             int nb = 0;
             for (Item i : items ){
-                String creationDate = sdf.format(i.getCreationDate().getTime());
-                if ( creationDate.equals(s)){
+                if ( i.getCreationDate().equals(s)){
                     nb= nb +1 ;
                 }
             }
@@ -217,9 +209,11 @@ public class ShopView implements Initializable {
         }
         XYChart.Series serie = new XYChart.Series();
 
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         for (int i = 0 ; i < dates.size() ; i++){
-            serie.getData().add(new XYChart.Data(dates.get(i), number.get(i)));
-            System.out.println( dates.get(i) + ", " + number.get(i));
+            String creationDate = sdf.format(dates.get(i).getTime());
+            serie.getData().add(new XYChart.Data(creationDate, number.get(i)));
+            System.out.println( creationDate + ", " + number.get(i));
         }
         bc.getData().setAll(serie);
 
