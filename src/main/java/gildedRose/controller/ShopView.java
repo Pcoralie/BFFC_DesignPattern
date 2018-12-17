@@ -53,6 +53,8 @@ public class ShopView implements Initializable {
 
     Inventory globalInventory = new Inventory(new Item[0]);
     Inventory supplierInventory = new Inventory(new Item[0]);
+    Inventory sellHistory = new Inventory(new Item[0]);
+    Inventory buyHistory = new Inventory(new Item[0]);
 
 
 
@@ -447,37 +449,61 @@ public class ShopView implements Initializable {
         {
             Item itemSelected = supplierInventory.getItems()[indexItemSelected];
             globalInventory.addItem(new Cheese(itemSelected.getName(), itemSelected.getSellIn(), itemSelected.getQuality(), itemSelected.getCreationDate()));
+            buyHistory.addItem(new Cheese(itemSelected.getName(), itemSelected.getSellIn(), itemSelected.getQuality(), itemSelected.getCreationDate()));
         }
         if(supplierInventory.getItems()[indexItemSelected] instanceof Conjured)
         {
             Item itemSelected = supplierInventory.getItems()[indexItemSelected];
             globalInventory.addItem(new Conjured(itemSelected.getName(), itemSelected.getSellIn(), itemSelected.getQuality(), itemSelected.getCreationDate()));
-
+            buyHistory.addItem(new Conjured(itemSelected.getName(), itemSelected.getSellIn(), itemSelected.getQuality(), itemSelected.getCreationDate()));
         }
         if(supplierInventory.getItems()[indexItemSelected] instanceof BackstagePass)
         {
             Item itemSelected = supplierInventory.getItems()[indexItemSelected];
             globalInventory.addItem(new BackstagePass(itemSelected.getName(), itemSelected.getSellIn(), itemSelected.getQuality(), itemSelected.getCreationDate()));
-
+            buyHistory.addItem(new BackstagePass(itemSelected.getName(), itemSelected.getSellIn(), itemSelected.getQuality(), itemSelected.getCreationDate()));
         }
         if(supplierInventory.getItems()[indexItemSelected] instanceof Dexterity)
         {
             Item itemSelected = supplierInventory.getItems()[indexItemSelected];
             globalInventory.addItem(new Dexterity(itemSelected.getName(), itemSelected.getSellIn(), itemSelected.getQuality(), itemSelected.getCreationDate()));
-
+            buyHistory.addItem(new Dexterity(itemSelected.getName(), itemSelected.getSellIn(), itemSelected.getQuality(), itemSelected.getCreationDate()));
         }
         if(supplierInventory.getItems()[indexItemSelected] instanceof Elixir)
         {
             Item itemSelected = supplierInventory.getItems()[indexItemSelected];
             globalInventory.addItem(new Elixir(itemSelected.getName(), itemSelected.getSellIn(), itemSelected.getQuality(), itemSelected.getCreationDate()));
-
+            buyHistory.addItem(new Elixir(itemSelected.getName(), itemSelected.getSellIn(), itemSelected.getQuality(), itemSelected.getCreationDate()));
         }
         if(supplierInventory.getItems()[indexItemSelected] instanceof Legendary)
         {
             Item itemSelected = supplierInventory.getItems()[indexItemSelected];
             globalInventory.addItem(new Legendary(itemSelected.getName(), itemSelected.getSellIn(), itemSelected.getQuality(), itemSelected.getCreationDate()));
-
+            buyHistory.addItem(new Legendary(itemSelected.getName(), itemSelected.getSellIn(), itemSelected.getQuality(), itemSelected.getCreationDate()));
         }
+
+        /*final String nom = "buyHistory";
+        final File fichier =new File(nom);*/
+        try {
+            // Creation du fichier
+            //fichier .createNewFile();
+            // creation d'un writer (un écrivain)
+            final FileWriter writer = new FileWriter("buyHistory.txt");
+            try {
+                for(int i = 0; i<buyHistory.getItems().length; i++)
+                {
+                    writer.write("\n");
+                    writer.write(buyHistory.getItems()[i].toString());
+                }
+
+            } finally {
+                // quoiqu'il arrive, on ferme le fichier
+                writer.close();
+            }
+        } catch (Exception e) {
+            System.out.println("Impossible de creer le fichier");
+        }
+
         fetchItems();
         fetchSupplier();
         fetchPiechart();
@@ -491,6 +517,26 @@ public class ShopView implements Initializable {
     public void OnSellItem()
     {
         int indexItemSelected = listViewShop.getSelectionModel().getSelectedIndex();
+        sellHistory.addItem(globalInventory.getItems()[indexItemSelected]);
+        try {
+            // Creation du fichier
+            //fichier .createNewFile();
+            // creation d'un writer (un écrivain)
+            final FileWriter writer = new FileWriter("sellHistory.txt");
+            try {
+                for(int i = 0; i<sellHistory.getItems().length; i++)
+                {
+                    writer.write("\n");
+                    writer.write(sellHistory.getItems()[i].toString());
+                }
+
+            } finally {
+                // quoiqu'il arrive, on ferme le fichier
+                writer.close();
+            }
+        } catch (Exception e) {
+            System.out.println("Impossible de creer le fichier");
+        }
         globalInventory.deleteItem(indexItemSelected);
         fetchItems();
         fetchSupplier();
