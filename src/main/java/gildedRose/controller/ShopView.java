@@ -41,6 +41,8 @@ public class ShopView implements Initializable {
     ListView listViewSupplierInventory;
     @FXML
     Button buttonBuyItem;
+    @FXML
+    Button buttonSellItem;
 
     Inventory globalInventory = new Inventory(new Item[0]);
     Inventory supplierInventory = new Inventory(new Item[0]);
