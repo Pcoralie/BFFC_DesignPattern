@@ -180,6 +180,11 @@ public class Inventory {
         return items;
     }
 
+    public Item getItem(int index)
+    {
+        return items[index];
+    }
+
     public void setItems(Item[] items) {
         this.items = items;
     }

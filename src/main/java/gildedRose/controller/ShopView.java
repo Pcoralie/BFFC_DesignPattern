@@ -53,6 +53,8 @@ public class ShopView implements Initializable {
 
     Inventory globalInventory = new Inventory(new Item[0]);
     Inventory supplierInventory = new Inventory(new Item[0]);
+    ArrayList<Item> InventaireBuy = new ArrayList<>();
+    ArrayList<Item> InventaireSell = new ArrayList<>();
 
 
 
@@ -442,6 +444,7 @@ public class ShopView implements Initializable {
     public void OnBuyItem()
     {
         int indexItemSelected = listViewSupplierInventory.getSelectionModel().getSelectedIndex();
+        InventaireBuy.add(globalInventory.getItem(indexItemSelected));
         if(supplierInventory.getItems()[indexItemSelected] instanceof Cheese)
         {
             Item itemSelected = supplierInventory.getItems()[indexItemSelected];
@@ -485,11 +488,16 @@ public class ShopView implements Initializable {
         bc.setVisible(true);
         FetchBarChartSI();
         barChartSI.setVisible(true);
+        for(int i = 0; i < InventaireBuy.size(); i++)
+        {
+            System.out.println(InventaireBuy.get(i).toString());
+        }
     }
 
     public void OnSellItem()
     {
         int indexItemSelected = listViewShop.getSelectionModel().getSelectedIndex();
+        InventaireSell.add(globalInventory.getItem(indexItemSelected));
         globalInventory.deleteItem(indexItemSelected);
         fetchItems();
         fetchSupplier();
@@ -499,5 +507,9 @@ public class ShopView implements Initializable {
         bc.setVisible(true);
         FetchBarChartSI();
         barChartSI.setVisible(true);
+        for(int i = 0; i < InventaireSell.size(); i++)
+        {
+            System.out.println(InventaireSell.get(i).toString());
+        }
     }
 }
