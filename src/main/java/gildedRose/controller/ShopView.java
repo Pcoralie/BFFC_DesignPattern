@@ -76,6 +76,12 @@ public class ShopView implements Initializable {
         this.globalInventory = new Inventory(new Item[0]);
         this.supplierInventory = new Inventory(new Item[0]);
         this.date = 0;
+        /*this.listViewSupplierInventory = new ListView<String>();
+        this.listViewShop = new ListView<String>();
+        this.pieChart = new PieChart();
+        this.barChartSI = new BarChart<String, Number>(xAxis, yAxis);
+        this.bc = new BarChart<String, Number>(xAxis, yAxis);*/
+
     }
 
     @Override
