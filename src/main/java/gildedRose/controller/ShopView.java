@@ -50,6 +50,13 @@ public class ShopView implements Initializable {
     PieChart pieChart;
 
     @FXML
+    ListView listViewSupplierInventory;
+    @FXML
+    Button buttonBuyItem;
+    @FXML
+    Button buttonSellItem;
+
+    @FXML
     BarChart<String, Number> bc;
     @FXML
     CategoryAxis xAxis;
@@ -60,6 +67,7 @@ public class ShopView implements Initializable {
     BarChart<String, Number> barChartSI;
 
     Inventory globalInventory = new Inventory(new Item[0]);
+    Inventory supplierInventory = new Inventory(new Item[0]);
 
     int date = 0;
 
@@ -74,6 +82,7 @@ public class ShopView implements Initializable {
 
         //fetchItems();
         //fetchPiechart();
+        loadSupplier();
 
     }
 
@@ -265,10 +274,12 @@ public class ShopView implements Initializable {
                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                calendar.setTime(sdf.parse(dateOfCreation));
 
+
                if(name.toLowerCase().contains("elixir"))
                {
                    Elixir newElixir = new Elixir(name, sellin, quality, calendar);
                    globalInventory.addItem(newElixir);
+
                }
                if(name.toLowerCase().contains("dexterity"))
                {
@@ -295,6 +306,7 @@ public class ShopView implements Initializable {
                    Legendary newLegendary = new Legendary(name, sellin, quality, calendar);
                    globalInventory.addItem(newLegendary);
                }
+
             }
             fetchPiechart();
             pieChart.setVisible(true);
@@ -320,5 +332,158 @@ public class ShopView implements Initializable {
             e.printStackTrace();
         }
 
+
+
+    }
+
+    public void fetchSupplier()
+    {
+        ObservableList<String> allItems;
+        ArrayList<String> itemsToFetch = new ArrayList<String>();
+
+
+
+        for(int i = 0; i<supplierInventory.getItems().length; i++)
+        {
+            itemsToFetch.add(supplierInventory.getItems()[i].toString());
+        }
+        allItems = FXCollections.observableArrayList(itemsToFetch);
+        listViewSupplierInventory.setItems(allItems);
+    }
+
+
+    public void loadSupplier()
+    {
+        JSONParser parser = new JSONParser();
+
+
+        try {
+        JSONArray inventory = (JSONArray) parser.parse(new FileReader("inventory.json"));
+
+
+            for(Object o : inventory)
+            {
+
+                JSONObject item = (JSONObject) o;
+                String name = (String) item.get("name");
+                Integer sellin = (int) (long)item.get("sellIn");
+                Integer quality = (int) (long)item.get("quality");
+
+                Calendar calendar = Calendar.getInstance();
+                String dateOfCreation = (String) item.get("date");
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                calendar.setTime(sdf.parse(dateOfCreation));
+
+
+                if(name.toLowerCase().contains("elixir"))
+                {
+                    Elixir newElixir = new Elixir(name, sellin, quality, calendar);
+                    supplierInventory.addItem(newElixir);
+                }
+                if(name.toLowerCase().contains("dexterity"))
+                {
+                    Dexterity newDexterity = new Dexterity(name, sellin, quality, calendar);
+                    supplierInventory.addItem(newDexterity);
+                }
+                if(name.toLowerCase().contains("aged"))
+                {
+                    Cheese newCheese = new Cheese(name, sellin, quality, calendar);
+                    supplierInventory.addItem(newCheese);
+                }
+                if(name.toLowerCase().contains("conjured"))
+                {
+                    Conjured newConjured = new Conjured(name, sellin, quality, calendar);
+                    supplierInventory.addItem(newConjured);
+                }
+                if(name.toLowerCase().contains("backstage"))
+                {
+                    BackstagePass newBackstage = new BackstagePass(name, sellin, quality, calendar);
+                    supplierInventory.addItem(newBackstage);
+                }
+                if(name.toLowerCase().contains("sulfuras"))
+                {
+                    Legendary newLegendary = new Legendary(name, sellin, quality, calendar);
+                    supplierInventory.addItem(newLegendary);
+                }
+
+                fetchSupplier();
+
+
+            }
+            }catch(FileNotFoundException e){
+                System.out.println("json file isn't found");
+                e.printStackTrace();
+            }catch(IOException e ){
+                e.printStackTrace();
+            }catch(ParseException e){
+                e.printStackTrace();
+            }catch(Exception e ){
+                e.printStackTrace();
+            }
+
+    }
+
+
+    public void OnBuyItem()
+    {
+        int indexItemSelected = listViewSupplierInventory.getSelectionModel().getSelectedIndex();
+        if(supplierInventory.getItems()[indexItemSelected] instanceof Cheese)
+        {
+            Item itemSelected = supplierInventory.getItems()[indexItemSelected];
+            globalInventory.addItem(new Cheese(itemSelected.getName(), itemSelected.getSellIn(), itemSelected.getQuality(), itemSelected.getCreationDate()));
+        }
+        if(supplierInventory.getItems()[indexItemSelected] instanceof Conjured)
+        {
+            Item itemSelected = supplierInventory.getItems()[indexItemSelected];
+            globalInventory.addItem(new Conjured(itemSelected.getName(), itemSelected.getSellIn(), itemSelected.getQuality(), itemSelected.getCreationDate()));
+
+        }
+        if(supplierInventory.getItems()[indexItemSelected] instanceof BackstagePass)
+        {
+            Item itemSelected = supplierInventory.getItems()[indexItemSelected];
+            globalInventory.addItem(new BackstagePass(itemSelected.getName(), itemSelected.getSellIn(), itemSelected.getQuality(), itemSelected.getCreationDate()));
+
+        }
+        if(supplierInventory.getItems()[indexItemSelected] instanceof Dexterity)
+        {
+            Item itemSelected = supplierInventory.getItems()[indexItemSelected];
+            globalInventory.addItem(new Dexterity(itemSelected.getName(), itemSelected.getSellIn(), itemSelected.getQuality(), itemSelected.getCreationDate()));
+
+        }
+        if(supplierInventory.getItems()[indexItemSelected] instanceof Elixir)
+        {
+            Item itemSelected = supplierInventory.getItems()[indexItemSelected];
+            globalInventory.addItem(new Elixir(itemSelected.getName(), itemSelected.getSellIn(), itemSelected.getQuality(), itemSelected.getCreationDate()));
+
+        }
+        if(supplierInventory.getItems()[indexItemSelected] instanceof Legendary)
+        {
+            Item itemSelected = supplierInventory.getItems()[indexItemSelected];
+            globalInventory.addItem(new Legendary(itemSelected.getName(), itemSelected.getSellIn(), itemSelected.getQuality(), itemSelected.getCreationDate()));
+
+        }
+
+        fetchItems();
+        fetchSupplier();
+        fetchPiechart();
+        pieChart.setVisible(true);
+        FetchBarChartCreationDate();
+        bc.setVisible(true);
+        FetchBarChartSI();
+        barChartSI.setVisible(true);
+    }
+
+    public void OnSellItem()
+    {
+        int indexItemSelected = listViewShop.getSelectionModel().getSelectedIndex();
+        globalInventory.deleteItem(indexItemSelected);
+        fetchItems();
+        fetchSupplier();
+        fetchPiechart();
+        pieChart.setVisible(true);
+        FetchBarChartCreationDate();
+        bc.setVisible(true);
+        FetchBarChartSI();
+        barChartSI.setVisible(true);
     }
 }

@@ -144,6 +144,27 @@ public class Inventory {
         this.setItems(newItemArray);
     }
 
+    public void deleteItem(int index)
+    {
+        Item [] newItemArray = new Item[this.items.length-1];
+        int i1 = 0;
+        int i2 = 0;
+        while(i1 != index)
+        {
+            newItemArray[i2] = this.items[i1];
+            i1++;
+            i2++;
+        }
+        i1++;
+        while(i1 < this.items.length)
+        {
+            newItemArray[i2] = this.items[i1];
+            i1++;
+            i2++;
+        }
+        this.setItems(newItemArray);
+    }
+
 
 
 

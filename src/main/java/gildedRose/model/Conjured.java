@@ -22,6 +22,8 @@ public class Conjured extends Item {
         this.quality = quality;
     }
 
+
+
     public Conjured() {
     }
 

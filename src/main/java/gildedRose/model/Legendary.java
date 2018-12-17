@@ -2,6 +2,9 @@ package gildedRose.model;
 
 import gildedRose.model.Item;
 
+import java.util.Calendar;
+
+
 
 import java.util.Calendar;
 
@@ -23,6 +26,7 @@ public class Legendary extends Item {
         this.sellIn = sellIn;
         this.quality = quality;
     }
+
 
     public Legendary() {
     }

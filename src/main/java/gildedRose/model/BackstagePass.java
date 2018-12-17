@@ -1,5 +1,6 @@
 package gildedRose.model;
 
+
 import java.util.Calendar;
 
 
@@ -22,6 +23,9 @@ public class BackstagePass extends Item {
         this.sellIn = sellIn;
         this.quality = quality;
     }
+
+
+
 
     public BackstagePass() {
     }
