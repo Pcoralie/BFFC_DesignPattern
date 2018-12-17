@@ -312,35 +312,62 @@ public class ShopView implements Initializable {
                {
                    Elixir newElixir = new Elixir(name, sellin, quality, calendar);
                    globalInventory.addItem(newElixir);
+                   buyHistory.addItem(newElixir);
 
                }
                if(name.toLowerCase().contains("dexterity"))
                {
                    Dexterity newDexterity = new Dexterity(name, sellin, quality, calendar);
                    globalInventory.addItem(newDexterity);
+                   buyHistory.addItem(newDexterity);
                }
                if(name.toLowerCase().contains("aged"))
                {
                    Cheese newCheese = new Cheese(name, sellin, quality, calendar);
                    globalInventory.addItem(newCheese);
+                   buyHistory.addItem(newCheese);
                }
                if(name.toLowerCase().contains("conjured"))
                {
                    Conjured newConjured = new Conjured(name, sellin, quality, calendar);
                    globalInventory.addItem(newConjured);
+                   buyHistory.addItem(newConjured);
                }
                if(name.toLowerCase().contains("backstage"))
                {
                    BackstagePass newBackstage = new BackstagePass(name, sellin, quality, calendar);
                    globalInventory.addItem(newBackstage);
+                   buyHistory.addItem(newBackstage);
                }
                if(name.toLowerCase().contains("sulfuras"))
                {
                    Legendary newLegendary = new Legendary(name, sellin, quality, calendar);
                    globalInventory.addItem(newLegendary);
+                   buyHistory.addItem(newLegendary);
                }
 
             }
+
+            try {
+                // Creation du fichier
+                //fichier .createNewFile();
+                // creation d'un writer (un écrivain)
+                final FileWriter writer = new FileWriter("buyHistory.txt");
+                try {
+                    for(int i = 0; i<buyHistory.getItems().length; i++)
+                    {
+                        writer.write("\n");
+                        writer.write(buyHistory.getItems()[i].toString());
+                    }
+
+                } finally {
+                    // quoiqu'il arrive, on ferme le fichier
+                    writer.close();
+                }
+            } catch (Exception e) {
+                System.out.println("Impossible de creer le fichier");
+            }
+
             fetchPiechart();
             pieChart.setVisible(true);
             FetchBarChartCreationDate();

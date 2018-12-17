@@ -1,4 +1,14 @@
 
++5 Dexterity Vest, sellIn : 10, quality : 20, creation Date :  16/11/2019
+Aged Brie, sellIn : 2, quality : 0, creation Date :  17/11/2019
 Elixir of the Mongoose, sellIn : 5, quality : 7, creation Date :  18/11/2019
+Sulfuras, Hand of Ragnaros, sellIn : 0, quality : 80, creation Date :  19/11/2019
 Backstage passes to a TAFKAL80ETC concert, sellIn : 15, quality : 20, creation Date :  20/11/2019
+Conjured Mana Cake, sellIn : 3, quality : 6, creation Date :  21/11/2019
 +6 Dexterity Pants, sellIn : -2, quality : 20, creation Date :  22/11/2019
+Aged Camembert, sellIn : -2, quality : 5, creation Date :  23/11/2019
+Elixir of the Elders, sellIn : -2, quality : 7, creation Date :  24/11/2019
+Backstage passes to a TAFKAL80ETC concert 2, sellIn : 8, quality : 20, creation Date :  25/11/2019
+Backstage passes to a TAFKAL80ETC concert 3, sellIn : 3, quality : 20, creation Date :  26/11/2019
+Conjured Health Cake, sellIn : -2, quality : 6, creation Date :  27/11/2019
+Backstage passes to a TAFKAL80ETC concert, sellIn : 15, quality : 20, creation Date :  20/11/2019
