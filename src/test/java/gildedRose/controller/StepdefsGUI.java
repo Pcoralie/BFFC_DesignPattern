@@ -1,10 +1,12 @@
-package gildedRose.model;
+package gildedRose.controller;
 
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import gildedRose.controller.ShopView;
+import gildedRose.model.Inventory;
+import gildedRose.model.Item;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
 

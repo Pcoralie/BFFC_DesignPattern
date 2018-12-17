@@ -1,7 +1,7 @@
 # new feature
 # Tags: optional
 
-Feature: JSON File
+Feature: ShopView File
 
   Scenario: Load JSON File
     #Given I choose a json file
