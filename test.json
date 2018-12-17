@@ -1,0 +1,15 @@
+[
+  {"name": "+5 Dexterity Vest", "sellIn":10, "quality":20, "date":"16/11/2019"},
+  {"name": "Aged Brie", "sellIn": 2, "quality": 0, "date":"17/11/2019"},
+  {"name": "Elixir of the Mongoose", "sellIn": 5,  "quality": 7, "date":"18/11/2019"},
+  {"name": "Sulfuras, Hand of Ragnaros", "sellIn": 0, "quality": 80, "date":"19/11/2019"},
+  {"name": "Backstage passes to a TAFKAL80ETC concert", "sellIn": 15, "quality": 20, "date":"20/11/2019"},
+  {"name": "Conjured Mana Cake", "sellIn": 3, "quality": 6, "date":"21/11/2019"},
+  { "name":"+6 Dexterity Pants" , "sellIn": -2 , "quality":20, "date":"22/11/2019"},
+  { "name":"Aged Camembert" , "sellIn": -2, "quality":5, "date":"23/11/2019"},
+  { "name": "Elixir of the Elders" , "sellIn": -2 , "quality": 7, "date":"24/11/2019"},
+  { "name":"Backstage passes to a TAFKAL80ETC concert 2" , "sellIn":8 , "quality":20, "date":"25/11/2019"},
+  { "name":"Backstage passes to a TAFKAL80ETC concert 3" , "sellIn":3 , "quality":20, "date":"26/11/2019"},
+  { "name": "Conjured Health Cake", "sellIn": -2, "quality":6, "date":"27/11/2019"}
+
+]

@@ -2,36 +2,21 @@ package gildedRose.controller;
 
 import gildedRose.model.*;
 import javafx.fxml.Initializable;
-
 import java.io.*;
 import java.net.URL;
-
 import java.text.SimpleDateFormat;
 import java.util.*;
-
-
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
-
-
-import java.text.SimpleDateFormat;
-import java.util.*;
-
-import java.util.ArrayList;
-import java.util.ResourceBundle;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.chart.*;
 import javafx.scene.control.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
 import javax.swing.*;
 
 public class ShopView implements Initializable {
@@ -48,7 +33,6 @@ public class ShopView implements Initializable {
     Button buttonLoadFile;
     @FXML
     PieChart pieChart;
-
     @FXML
     ListView listViewSupplierInventory;
     @FXML
@@ -66,23 +50,42 @@ public class ShopView implements Initializable {
     @FXML
     BarChart<String, Number> barChartSI;
 
+
     Inventory globalInventory = new Inventory(new Item[0]);
     Inventory supplierInventory = new Inventory(new Item[0]);
 
+
+
     int date = 0;
 
-    //Constructor
+    // Constructor
     public ShopView() {
         this.globalInventory = new Inventory(new Item[0]);
-        this.supplierInventory = new Inventory(new Item[0]);
         this.date = 0;
-        /*this.listViewSupplierInventory = new ListView<String>();
-        this.listViewShop = new ListView<String>();
-        this.pieChart = new PieChart();
-        this.barChartSI = new BarChart<String, Number>(xAxis, yAxis);
-        this.bc = new BarChart<String, Number>(xAxis, yAxis);*/
-
     }
+
+    //getters and setters
+
+    public Inventory getGlobalInventory() {
+        return globalInventory;
+    }
+
+    public void setGlobalInventory(Inventory globalInventory) {
+        this.globalInventory = globalInventory;
+    }
+
+    public BarChart<String, Number> getBc() { return bc; }
+
+    public void setBc(BarChart<String, Number> bc) { this.bc = bc; }
+
+    public PieChart getPieChart() { return pieChart; }
+
+    public void setPieChart(PieChart pieChart) { this.pieChart = pieChart; }
+
+    public int getDate() { return date; }
+
+    public void setDate(int date) { this.date = date; }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -194,7 +197,6 @@ public class ShopView implements Initializable {
         Item [] items = globalInventory.getItems();
         bc.autosize();
 
-
         //CategoryAxis xAxis = new CategoryAxis();
         //NumberAxis yAxis = new NumberAxis();
         //BarChart<String, Number> bc = new BarChart<String, Number>(xAxis, yAxis);
@@ -202,26 +204,30 @@ public class ShopView implements Initializable {
         //bc.setTitle("Number of Items by creation date");
         //xAxis.setLabel("creation date");
         //yAxis.setLabel("number of items");
+      /*
         ArrayList<String> dates = new ArrayList();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");*/
+        
+        ArrayList<Calendar> dates = new ArrayList<>();
         for (Item i : items ) {
-            String creationDate = sdf.format(i.getCreationDate().getTime());
             boolean isPresent = false;
-            for ( String s : dates){
-                if ( s.equals(creationDate)) {
+            for ( Calendar s : dates){
+                if ( s.equals(i.getCreationDate())) {
                     isPresent = true;
                 }
             }
             if (!isPresent){
-                dates.add(creationDate);
+                dates.add(i.getCreationDate());
             }
         }
+
+        Collections.sort(dates);
+
         ArrayList<Integer> number = new ArrayList();
-        for (String s : dates){
+        for (Calendar s : dates){
             int nb = 0;
             for (Item i : items ){
-                String creationDate = sdf.format(i.getCreationDate().getTime());
-                if ( creationDate.equals(s)){
+                if ( i.getCreationDate().equals(s)){
                     nb= nb +1 ;
                 }
             }
@@ -229,9 +235,11 @@ public class ShopView implements Initializable {
         }
         XYChart.Series serie = new XYChart.Series();
 
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         for (int i = 0 ; i < dates.size() ; i++){
-            serie.getData().add(new XYChart.Data(dates.get(i), number.get(i)));
-            System.out.println( dates.get(i) + ", " + number.get(i));
+            String creationDate = sdf.format(dates.get(i).getTime());
+            serie.getData().add(new XYChart.Data(creationDate, number.get(i)));
+            System.out.println( creationDate + ", " + number.get(i));
         }
         bc.getData().setAll(serie);
 
@@ -252,10 +260,10 @@ public class ShopView implements Initializable {
 
     }
 
-    public void OnLoadFile(){
-        JSONParser parser = new JSONParser();
+    public File ChooseFile(){
         JFileChooser chooser = new JFileChooser();
         chooser.setCurrentDirectory(new java.io.File("."));
+
         //chooser.setDialogTitle("Browse the folder to process");
         //chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         //chooser.setAcceptAllFileFilterUsed(false);
@@ -266,7 +274,18 @@ public class ShopView implements Initializable {
             System.out.println("No Selection ");
         }
 
-        try {JSONArray inventory = (JSONArray) parser.parse(new FileReader( chooser.getSelectedFile()));
+        File file = chooser.getSelectedFile();
+        return file;
+    }
+
+
+
+    public void OnLoadFile(){
+        JSONParser parser = new JSONParser();
+            File jsonFile = ChooseFile();
+
+
+        try {JSONArray inventory = (JSONArray) parser.parse(new FileReader( jsonFile));
         //try{ JSONArray inventory = (JSONArray) parser.parse(new FileReader("inventory.json"));
             /*JSONObject jsonObject =(JSONObject) obj;
             JSONArray inventory =(JSONArray) jsonObject.get("inventory");
@@ -328,11 +347,7 @@ public class ShopView implements Initializable {
             barChartSI.setVisible(true);
 
             fetchItems();
-
-
-
-
-
+             
         }catch(FileNotFoundException e){
             System.out.println("json file isn't found");
             e.printStackTrace();
@@ -343,18 +358,14 @@ public class ShopView implements Initializable {
         }catch(Exception e ){
             e.printStackTrace();
         }
-
-
-
     }
+  
 
     public void fetchSupplier()
     {
         ObservableList<String> allItems;
         ArrayList<String> itemsToFetch = new ArrayList<String>();
-
-
-
+      
         for(int i = 0; i<supplierInventory.getItems().length; i++)
         {
             itemsToFetch.add(supplierInventory.getItems()[i].toString());
@@ -367,15 +378,12 @@ public class ShopView implements Initializable {
     public void loadSupplier()
     {
         JSONParser parser = new JSONParser();
-
-
+      
         try {
         JSONArray inventory = (JSONArray) parser.parse(new FileReader("inventory.json"));
 
-
             for(Object o : inventory)
             {
-
                 JSONObject item = (JSONObject) o;
                 String name = (String) item.get("name");
                 Integer sellin = (int) (long)item.get("sellIn");
@@ -385,7 +393,6 @@ public class ShopView implements Initializable {
                 String dateOfCreation = (String) item.get("date");
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 calendar.setTime(sdf.parse(dateOfCreation));
-
 
                 if(name.toLowerCase().contains("elixir"))
                 {
@@ -417,9 +424,7 @@ public class ShopView implements Initializable {
                     Legendary newLegendary = new Legendary(name, sellin, quality, calendar);
                     supplierInventory.addItem(newLegendary);
                 }
-
                 fetchSupplier();
-
 
             }
             }catch(FileNotFoundException e){
@@ -432,7 +437,6 @@ public class ShopView implements Initializable {
             }catch(Exception e ){
                 e.printStackTrace();
             }
-
     }
 
 
@@ -474,7 +478,6 @@ public class ShopView implements Initializable {
             globalInventory.addItem(new Legendary(itemSelected.getName(), itemSelected.getSellIn(), itemSelected.getQuality(), itemSelected.getCreationDate()));
 
         }
-
         fetchItems();
         fetchSupplier();
         fetchPiechart();
