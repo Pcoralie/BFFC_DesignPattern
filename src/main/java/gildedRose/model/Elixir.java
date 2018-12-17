@@ -21,6 +21,7 @@ public class Elixir extends Item {
         this.creationDate = calendar;
     }
 
+
     public void updateQuality()
     {
 
