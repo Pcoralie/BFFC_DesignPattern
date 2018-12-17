@@ -86,6 +86,7 @@ public class ShopView implements Initializable {
 
     public void setDate(int date) { this.date = date; }
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
