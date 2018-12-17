@@ -2,36 +2,21 @@ package gildedRose.controller;
 
 import gildedRose.model.*;
 import javafx.fxml.Initializable;
-
 import java.io.*;
 import java.net.URL;
-
 import java.text.SimpleDateFormat;
 import java.util.*;
-
-
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
-
-
-import java.text.SimpleDateFormat;
-import java.util.*;
-
-import java.util.ArrayList;
-import java.util.ResourceBundle;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.chart.*;
 import javafx.scene.control.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
 import javax.swing.*;
 
 public class ShopView implements Initializable {
@@ -46,18 +31,8 @@ public class ShopView implements Initializable {
     Label labelDate;
     @FXML
     Button buttonLoadFile;
-
-    public PieChart getPieChart() {
-        return pieChart;
-    }
-
-    public void setPieChart(PieChart pieChart) {
-        this.pieChart = pieChart;
-    }
-
     @FXML
     PieChart pieChart;
-
     @FXML
     BarChart<String, Number> bc;
     @FXML
@@ -68,10 +43,20 @@ public class ShopView implements Initializable {
     @FXML
     BarChart<String, Number> barChartSI;
 
+
+    Inventory globalInventory = new Inventory(new Item[0]);
+
+
+
+    int date = 0;
+
+    // Constructor
     public ShopView() {
         this.globalInventory = new Inventory(new Item[0]);
         this.date = 0;
     }
+
+    //getters and setters
 
     public Inventory getGlobalInventory() {
         return globalInventory;
@@ -81,10 +66,17 @@ public class ShopView implements Initializable {
         this.globalInventory = globalInventory;
     }
 
-    Inventory globalInventory = new Inventory(new Item[0]);
+    public BarChart<String, Number> getBc() { return bc; }
 
-    int date = 0;
+    public void setBc(BarChart<String, Number> bc) { this.bc = bc; }
 
+    public PieChart getPieChart() { return pieChart; }
+
+    public void setPieChart(PieChart pieChart) { this.pieChart = pieChart; }
+
+    public int getDate() { return date; }
+
+    public void setDate(int date) { this.date = date; }
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -268,6 +260,8 @@ public class ShopView implements Initializable {
         File file = chooser.getSelectedFile();
         return file;
     }
+
+
 
     public void OnLoadFile(){
         JSONParser parser = new JSONParser();
