@@ -3,12 +3,20 @@ package gildedRose.model;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-
 public class Item implements IUpdate {
 
     protected String name;
     protected int sellIn;
     protected int quality;
+
+    public Calendar getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Calendar creationDate) {
+        this.creationDate = creationDate;
+    }
+
     protected Calendar creationDate;
 
     public Item(String name, int sellIn, int quality) {

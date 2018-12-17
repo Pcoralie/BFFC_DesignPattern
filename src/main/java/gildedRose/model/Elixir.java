@@ -22,7 +22,6 @@ public class Elixir extends Item {
     }
 
 
-
     public void updateQuality()
     {
 

@@ -9,12 +9,23 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+
+
+import java.text.SimpleDateFormat;
+import java.util.*;
+
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.chart.PieChart;
+import javafx.scene.Scene;
+import javafx.scene.chart.*;
 import javafx.scene.control.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -37,12 +48,23 @@ public class ShopView implements Initializable {
     Button buttonLoadFile;
     @FXML
     PieChart pieChart;
+
     @FXML
     ListView listViewSupplierInventory;
     @FXML
     Button buttonBuyItem;
     @FXML
     Button buttonSellItem;
+
+    @FXML
+    BarChart<String, Number> bc;
+    @FXML
+    CategoryAxis xAxis;
+    @FXML
+    NumberAxis yAxis;
+
+    @FXML
+    BarChart<String, Number> barChartSI;
 
     Inventory globalInventory = new Inventory(new Item[0]);
     Inventory supplierInventory = new Inventory(new Item[0]);
@@ -55,6 +77,8 @@ public class ShopView implements Initializable {
     {
         labelDate.setText("Jour : " + Integer.toString(date));
         pieChart.setVisible(false);
+        bc.setVisible(false);
+        barChartSI.setVisible(false);
 
         //fetchItems();
         //fetchPiechart();
@@ -109,6 +133,98 @@ public class ShopView implements Initializable {
         pieChart.setData(pieChartData);
     }
 
+
+    public void FetchBarChartSI(){
+        Item [] items = globalInventory.getItems();
+        barChartSI.autosize();
+
+        ArrayList<Integer> SellIn = new ArrayList();
+        for(Item item : items)
+        {
+            boolean isPresent = false;
+            for(Integer integer: SellIn)
+            {
+                if(integer.equals(item.getSellIn()))
+                {
+                    isPresent = true;
+                }
+            }
+            if(!isPresent)
+            {
+                SellIn.add(item.getSellIn());
+            }
+        }
+        Collections.sort(SellIn);
+
+        ArrayList<Integer> NumberOfItems = new ArrayList();
+        for (Integer integer: SellIn)
+        {
+            int nb = 0;
+            for(Item item : items)
+            {
+                if (integer.equals(item.getSellIn()))
+                {
+                    nb++;
+                }
+            }
+            NumberOfItems.add(nb);
+        }
+
+        XYChart.Series serie = new XYChart.Series();
+        for (int i = 0 ; i < SellIn.size() ; i++){
+            serie.getData().add(new XYChart.Data(SellIn.get(i).toString(), NumberOfItems.get(i)));
+            System.out.println( SellIn.get(i) + ", " + NumberOfItems.get(i));
+        }
+        barChartSI.getData().setAll(serie);
+    }
+
+    public void FetchBarChartCreationDate(){
+        Item [] items = globalInventory.getItems();
+        bc.autosize();
+
+
+        //CategoryAxis xAxis = new CategoryAxis();
+        //NumberAxis yAxis = new NumberAxis();
+        //BarChart<String, Number> bc = new BarChart<String, Number>(xAxis, yAxis);
+        //bc = new BarChart<String, Number>(xAxis, yAxis);
+        //bc.setTitle("Number of Items by creation date");
+        //xAxis.setLabel("creation date");
+        //yAxis.setLabel("number of items");
+        ArrayList<String> dates = new ArrayList();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        for (Item i : items ) {
+            String creationDate = sdf.format(i.getCreationDate().getTime());
+            boolean isPresent = false;
+            for ( String s : dates){
+                if ( s.equals(creationDate)) {
+                    isPresent = true;
+                }
+            }
+            if (!isPresent){
+                dates.add(creationDate);
+            }
+        }
+        ArrayList<Integer> number = new ArrayList();
+        for (String s : dates){
+            int nb = 0;
+            for (Item i : items ){
+                String creationDate = sdf.format(i.getCreationDate().getTime());
+                if ( creationDate.equals(s)){
+                    nb= nb +1 ;
+                }
+            }
+            number.add(nb);
+        }
+        XYChart.Series serie = new XYChart.Series();
+
+        for (int i = 0 ; i < dates.size() ; i++){
+            serie.getData().add(new XYChart.Data(dates.get(i), number.get(i)));
+            System.out.println( dates.get(i) + ", " + number.get(i));
+        }
+        bc.getData().setAll(serie);
+
+    }
+
     public void OnUpdate()
     {
         globalInventory.updateQuality();
@@ -117,6 +233,11 @@ public class ShopView implements Initializable {
         fetchItems();
         fetchPiechart();
         pieChart.setVisible(true);
+        FetchBarChartCreationDate();
+        bc.setVisible(true);
+        FetchBarChartSI();
+        barChartSI.setVisible(true);
+
     }
 
     public void OnLoadFile(){
@@ -186,17 +307,21 @@ public class ShopView implements Initializable {
                    globalInventory.addItem(newLegendary);
                }
 
-
-
             }
             fetchPiechart();
             pieChart.setVisible(true);
+            FetchBarChartCreationDate();
+            bc.setVisible(true);
+            FetchBarChartSI();
+            barChartSI.setVisible(true);
+
             fetchItems();
 
 
 
 
-            }catch(FileNotFoundException e){
+
+        }catch(FileNotFoundException e){
             System.out.println("json file isn't found");
             e.printStackTrace();
         }catch(IOException e ){
@@ -342,6 +467,10 @@ public class ShopView implements Initializable {
         fetchSupplier();
         fetchPiechart();
         pieChart.setVisible(true);
+        FetchBarChartCreationDate();
+        bc.setVisible(true);
+        FetchBarChartSI();
+        barChartSI.setVisible(true);
     }
 
     public void OnSellItem()
@@ -352,9 +481,9 @@ public class ShopView implements Initializable {
         fetchSupplier();
         fetchPiechart();
         pieChart.setVisible(true);
+        FetchBarChartCreationDate();
+        bc.setVisible(true);
+        FetchBarChartSI();
+        barChartSI.setVisible(true);
     }
-
-
-
-    
 }

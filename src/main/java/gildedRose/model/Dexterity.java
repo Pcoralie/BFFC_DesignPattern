@@ -20,8 +20,6 @@ public class Dexterity extends Item {
         this.creationDate = calendar;
     }
 
-
-
     public void updateQuality()
     {
 
